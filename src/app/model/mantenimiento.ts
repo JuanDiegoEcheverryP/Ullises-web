@@ -1,4 +1,4 @@
-export class Mantienimiento {
+export class Mantenimiento {
 
     constructor(
         public fecha: number,

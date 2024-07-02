@@ -1,3 +1,6 @@
+import { Mantenimiento } from "./mantenimiento";
+import { PrestamoArco } from "./prestamoArco";
+
 export class Arco {
 
     constructor(
@@ -7,5 +10,7 @@ export class Arco {
         public libraje: number,
         public tipo: string,
         public mano: string,
+        public mantenimiento: Mantenimiento[],
+        public historial: PrestamoArco[],
     ) { }
 }

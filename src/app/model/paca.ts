@@ -1,4 +1,4 @@
-import { Mantienimiento } from "./mantenimiento";
+import { Mantenimiento } from "./mantenimiento";
 import { UbicacionCampo } from "./ubicacionCampo";
 
 export class Paca {
@@ -8,7 +8,7 @@ export class Paca {
         public ubicacion: string,
         public sede: string,
         public estado: string,
-        public historialMantenimiento: Mantienimiento[],
+        public historialMantenimiento: Mantenimiento[],
         public historialCampo: UbicacionCampo[],
     ) {}
 }
