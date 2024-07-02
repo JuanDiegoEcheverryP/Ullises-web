@@ -1,9 +1,19 @@
 
-<div style="text-align:center">
+<!--<div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
   <button (click)="addFirestoreEntry()">Add Entry to Firestore</button>
+  <button (click)="fetchFirestoreData()">Fetch Data from Firestore</button>
+  <button (click)="deleteFirestoreData()">Delete Data from Firestore</button>
+  <button (click)="downloadAllData()">Download All Data</button>
+  <div *ngIf="paca">
+    <h2>Data from paca:</h2>
+    <pre>{{ paca | json }}</pre>
+  </div>
+</div> 
+-->
+<div>
+  <!--<h1>Person App</h1>-->
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>

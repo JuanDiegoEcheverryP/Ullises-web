@@ -1,0 +1,18 @@
+<div class="container">
+    <input type="number" placeholder="Número del arco">
+    <select>
+        <option *ngFor="let tipo of tipoArcos" [value]="tipo.valueOf">{{tipo}}</option>
+    </select>
+    <select>
+        <option *ngFor="let libraje of librajeArcos" [value]="libraje.valueOf">{{libraje}}</option>
+    </select>
+    <select>
+        <option *ngFor="let mano of manoArcos" [value]="mano.valueOf">{{mano}}</option>
+    </select>
+    <select>
+        <option *ngFor="let calidad of calidadArcos" [value]="calidad.valueOf">{{calidad}}</option>
+    </select>
+    <select>
+        <option *ngFor="let estado of estadoArcos" [value]="estado.valueOf">{{estado}}</option>
+    </select>
+</div>

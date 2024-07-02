@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, setDoc, getDoc, deleteDoc, getDocs } from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -24,27 +24,56 @@ export class FirebaseService {
     this.db = getFirestore(app);
   }
 
-  async addData(collectionName: string, data: any) {
+  async addDocument(collection: string, document: string, data: any) {
     try {
-      const docRef = await addDoc(collection(this.db, collectionName), data);
-      console.log("Document written with ID: ", docRef.id);
+      const Ref = doc(this.db, collection, document);
+      await setDoc(Ref, data);
+      console.log("Document written with ID: " + document);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   }
 
-  async addDataToPaca2() {
+  async getData(collection: string, document: string) {
     try {
-      const paca2Ref = doc(this.db, "pacas", "paca2");
-      const data = {
-        attribute1: "value1",
-        attribute2: "value2",
-        attribute3: "value3"
-      };
-      await setDoc(paca2Ref, data);
-      console.log("Document written with ID: paca2");
+      const paca2Ref = doc(this.db, collection,document);
+      const docSnap = await getDoc(paca2Ref);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        return docSnap.data(); // Devuelve los datos del documento
+      } else {
+        console.log("No such document!");
+        return null; // Devuelve null si el documento no existe
+      }
     } catch (e) {
-      console.error("Error adding document: ", e);
+      console.error("Error getting document: ", e);
+      return null; // Devuelve null en caso de error
     }
   }
+
+  async deleteDocumentFromCollection(collection:string,document:string) {
+    try {
+      const Ref = doc(this.db, collection, document);
+      await deleteDoc(Ref);
+      console.log("Document successfully deleted!");
+    } catch (e) {
+      console.error("Error deleting document: ", e);
+    }
+  }
+
+  async getAllDataFromCollection(colection:string) {
+    try {
+      const querySnapshot = await getDocs(collection(this.db, colection));
+      const allData: any[] = [];
+      querySnapshot.forEach((doc) => {
+        allData.push({ id: doc.id, ...doc.data() });
+      });
+      return allData;
+    } catch (e) {
+      console.error("Error getting all documents: ", e);
+      return [];
+    }
+  }
+
 }
