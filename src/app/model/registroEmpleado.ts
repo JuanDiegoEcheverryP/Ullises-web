@@ -1,6 +1,7 @@
 export class RegistroEmpleado {
     constructor(
-        public fecha: number,
-        public sede: string
+        public fecha: string,
+        public sede: string,
+        public jornadaId:number,
     ) {}
 }

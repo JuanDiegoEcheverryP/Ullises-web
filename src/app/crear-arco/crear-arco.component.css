@@ -30,3 +30,9 @@ select {
     flex: 1 1 150px; /* Igual distribución del espacio para los selects */
     max-width: 100%;
 }
+
+
+.historial {
+    margin-top: 20px;
+    background-color: #f0f0f0;
+}

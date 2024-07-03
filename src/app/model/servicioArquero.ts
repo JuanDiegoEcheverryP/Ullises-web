@@ -1,12 +1,14 @@
 export class ServicioArquero {
 
     constructor(
-        public fecha: number,
+        public fecha: string,
         public servicio: string,
         public pagado: boolean,
-        public paca: number,
-        public arco: number,
+        public pacaId: number,
         public distancia: number,
         public duracion: number,
+        public IdArco: number,
+        
+        
     ) { }
 }

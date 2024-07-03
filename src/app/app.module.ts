@@ -7,6 +7,8 @@ import { CrearPacaComponent } from './crear-paca/crear-paca.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TestComponent } from './test/test.component';
 import { CrearArcoComponent } from './crear-arco/crear-arco.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VerArcosComponent } from './ver-arcos/ver-arcos.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { CrearArcoComponent } from './crear-arco/crear-arco.component';
     CrearPacaComponent,
     InicioComponent,
     TestComponent,
-    CrearArcoComponent
+    CrearArcoComponent,
+    VerArcosComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule // Asegúrate de que el módulo de enrutamiento esté importado aquí
+    AppRoutingModule,
+    BrowserAnimationsModule // Asegúrate de que el módulo de enrutamiento esté importado aquí
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

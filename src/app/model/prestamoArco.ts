@@ -1,8 +1,8 @@
 export class PrestamoArco {
 
     constructor(
-        public fecha: number,
-        public sede: string,
+        public fecha: string,
+        public sedeId: number,
         public arqueroId: number,
     ) { }
 }

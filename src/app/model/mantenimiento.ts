@@ -1,8 +1,8 @@
 export class Mantenimiento {
 
     constructor(
-        public fecha: number,
-        public responsable: string,
+        public fecha: string,
+        public empleadoId: number,
         public concepto: string,
     ) { }
 }

@@ -1,0 +1,146 @@
+.arco-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .arco-container:hover {
+    transform: scale(1.02);
+  }
+  
+  .arco-header {
+    background-color: #f7f7f7;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .arco-details {
+    margin-top: 16px;
+  }
+  
+  .arco-section h4 {
+    cursor: pointer;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding: 8px;
+    background-color: #e9e9e9;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .arco-section h4:hover {
+    background-color: #bdbdbd;
+  }
+  
+  .arrow {
+    color: #afafaf;
+    font-size: 18px;
+    margin-left: 8px;
+  }
+  
+  .arco-section ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .arco-section li {
+    padding: 4px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .arco-section ul {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+  
+  @media (min-width: 768px) {
+    .arco-container {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .arco-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+  
+    .arco-details p {
+      flex: 1 1 45%;
+      margin: 4px 0;
+    }
+  
+    .arco-section {
+      flex: 1 1 100%;
+    }
+
+    .arco-section ul {
+        max-height: 200px;
+        overflow-y: scroll;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .arco-container {
+      flex-direction: row;
+    }
+  
+    .arco-header, .arco-details, .arco-section {
+      flex: 1;
+      margin: 8px;
+    }
+  }
+  
+
+  .button-container {
+    display: flex; /* Usa flexbox para alinear los botones horizontalmente */
+    justify-content: space-around; /* Distribuye los botones a los lados */
+    margin-top: 10px; /* Margen superior para separar del contenido anterior */
+  }
+
+  .button-container * {
+    margin: 0 20px;
+  }
+
+/* Estilos para el botón de Editar */
+.btn-editar {
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 16px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como elemento en línea */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Transición de color de fondo */
+  }
+  
+  .btn-editar:hover {
+    background-color: #45a049; /* Color de fondo verde oscuro al pasar el ratón */
+  }
+  
+  /* Estilos para el botón de Eliminar */
+  .btn-eliminar {
+    background-color: #f44336; /* Color de fondo rojo */
+    color: white; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 16px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como elemento en línea */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Transición de color de fondo */
+  }
+  
+  .btn-eliminar:hover {
+    background-color: #f44336a1; /* Color de fondo rojo oscuro al pasar el ratón */
+  }
+  

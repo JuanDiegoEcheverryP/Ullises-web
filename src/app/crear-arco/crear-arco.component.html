@@ -1,19 +1,30 @@
-<div class="container">
-    <input type="number" placeholder="Número del arco">
-    <select>
-        <option *ngFor="let tipo of tipoArcos" [value]="tipo.valueOf">{{tipo}}</option>
+<form class="container" onsubmit="return false">
+    <input  id="numero" type="number" placeholder="Número del arco" min="1" required>
+    <select id="tipo">
+        <option *ngFor="let tipo of tipoArcos" [value]="tipo">{{tipo}}</option>
+      </select>
+    <select id="libraje">
+        <option *ngFor="let libraje of librajeArcos" [value]="libraje">{{libraje}}</option>
     </select>
-    <select>
-        <option *ngFor="let libraje of librajeArcos" [value]="libraje.valueOf">{{libraje}}</option>
+    <select id="mano">
+        <option *ngFor="let mano of manoArcos" [value]="mano">{{mano}}</option>
     </select>
-    <select>
-        <option *ngFor="let mano of manoArcos" [value]="mano.valueOf">{{mano}}</option>
+    <select id="calidad">
+        <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
     </select>
-    <select>
-        <option *ngFor="let calidad of calidadArcos" [value]="calidad.valueOf">{{calidad}}</option>
+    <select id="estado">
+        <option *ngFor="let estado of estadoArcos" [value]="estado">{{estado}}</option>
     </select>
-    <select>
-        <option *ngFor="let estado of estadoArcos" [value]="estado.valueOf">{{estado}}</option>
-    </select>
-</div>
+    <button (click)="agregarRegistro()">ddfs</button>
+</form>
 
+
+<!--
+<div class="historial">
+    <div *ngFor="let item of historial">
+        <p>{{item.fecha}}</p>
+        <p>{{item.sede}}</p>
+        <p>{{item.arqueroId}}</p>
+    </div>
+</div>
+-->
