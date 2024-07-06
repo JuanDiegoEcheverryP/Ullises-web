@@ -1,28 +1,25 @@
 <app-navbar></app-navbar>
 <div class="loader-container" *ngIf="!cargado">
     <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
-  </div>
-  
-
-<div class="arco-container" *ngFor="let arco of listaArcos; let i = index">
-    <div class="arco-header">
-        <h3>Arco ID: {{ arco.id }}</h3>
+</div>
+<div class="paca-container" *ngFor="let paca of listaPacas; let i = index">
+    <div class="paca-header">
+        <h3>Paca ID: {{ paca.id }}</h3>
     </div>
-    <div class="arco-details">
-        <p><strong>Calidad:</strong> {{ arco.calidad }}</p>
-        <p><strong>Estado:</strong> {{ arco.estado }}</p>
-        <p><strong>Libraje:</strong> {{ arco.libraje }}</p>
-        <p><strong>Tipo:</strong> {{ arco.tipo }}</p>
-        <p><strong>Mano:</strong> {{ arco.mano }}</p>
+    <div class="paca-details">
+        <p><strong>Tipo:</strong> {{ paca.tipo }}</p>
+        <p><strong>Estado:</strong> {{ paca.estado }}</p>
+        <p><strong>Sede:</strong> {{ paca.sede }}</p>
+        <p><strong>Ubicacion:</strong> {{ paca.ubicacion }}</p>
     </div>
     
-    <div class="arco-section">
+    <div class="paca-section">
         <h4 (click)="toggleSection(i, 'mantenimiento')">
         Mantenimientos: 
         <span class="arrow">{{ showMantenimiento[i] ? '▼' : '▶' }}</span>
         </h4>
       <ul *ngIf="showMantenimiento[i]">
-        <li *ngFor="let m of arco.mantenimiento">
+        <li *ngFor="let m of paca.mantenimiento">
             <p><strong>Fecha: </strong>{{ m.fecha }}</p>
             <p><strong>Responsable: </strong>{{ m.empleadoId }}</p>
             <p><strong>Concepto: </strong>{{ m.concepto }}</p>
@@ -34,16 +31,17 @@
         </ul>
     </div>
     
-    <div class="arco-section">
+    <div class="paca-section">
         <h4 (click)="toggleSection(i, 'historial')">
-        Historial de Préstamos: 
+        Historial de campo: 
         <span class="arrow">{{ showHistorial[i] ? '▼' : '▶' }}</span>
         </h4>
       <ul *ngIf="showHistorial[i]">
-        <li *ngFor="let h of arco.historial">
+        <li *ngFor="let h of paca.historialCampo">
             <p><strong>Fecha: </strong>{{ h.fecha }}</p>
             <p><strong>Sede: </strong>{{ h.sedeId }}</p>
-            <p><strong>Arquero: </strong>{{ h.arqueroId }}</p>
+            <p><strong>Ubicacion: </strong>{{ h.ubicacion }}</p>
+            <p><strong>Distancia: </strong>{{ h.distancia }}</p>
             <div class="button-container">
                 <button class="btn-editar">Editar</button>
                 <button class="btn-eliminar">Eliminar</button>
@@ -52,4 +50,3 @@
         </ul>
     </div>
 </div>
-

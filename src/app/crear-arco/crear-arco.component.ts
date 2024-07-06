@@ -3,6 +3,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { PrestamoArco } from '../model/prestamoArco';
 import { Arco } from '../model/arco';
 import { Mantenimiento } from '../model/mantenimiento';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,7 +33,11 @@ export class CrearArcoComponent implements OnInit {
   public concepto: string | undefined;
   public mantenimiento: Mantenimiento[] = [];
 
-  constructor(private firebaseService: FirebaseService) {
+  //Registros
+  itemName: string = '';
+  items: string[] = [];
+
+  constructor(private firebaseService: FirebaseService, private router: Router) {
     // Inicializa Firebase cuando se crea este componente
   }
   
@@ -64,7 +69,7 @@ export class CrearArcoComponent implements OnInit {
           });
         }
         else {
-          alert("Error de basef de datos")
+          alert("Error de base de datos")
         }
         
 
@@ -93,16 +98,16 @@ export class CrearArcoComponent implements OnInit {
       if (a == null) {
         let newObj = JSON.parse(jsonString);
         this.firebaseService.addDocument("Arcos",newArco.id.toString(),newObj)
+
+        alert("Arco agregado")
+        this.router.navigate(['/menu']);
       }
       else {
+        alert("Arco ya existe")
         console.log("Registro ya existe");
         
       }
     }
-  }
-
-  eliminarRegistro(index: number) {
-    //this.registros.splice(index, 1);
   }
 }
 

@@ -6,13 +6,19 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TestComponent } from './test/test.component';
 import { CrearArcoComponent } from './crear-arco/crear-arco.component';
 import { VerArcosComponent } from './ver-arcos/ver-arcos.component';
+import { VerPacasComponent } from './ver-pacas/ver-pacas.component';
+import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
+import { ArquitecturaComponent } from './arquitectura/arquitectura.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'crearPaca', component: CrearPacaComponent },
   { path: 'crearArco', component: CrearArcoComponent },
-  { path: 'verArco', component: VerArcosComponent },
-  { path: '**', component: InicioComponent }
+  { path: 'verArcos', component: VerArcosComponent },
+  { path: 'verPacas', component: VerPacasComponent },
+  { path: 'menu', component: MenuPrincipalComponent },
+  { path: 'arquitectura', component: ArquitecturaComponent },
+  { path: '**', component: MenuPrincipalComponent }
 ];
 
 @NgModule({

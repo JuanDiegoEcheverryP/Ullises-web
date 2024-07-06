@@ -8,7 +8,7 @@ export class Paca {
         public ubicacion: string,
         public sede: string,
         public estado: string,
-        public historialMantenimiento: Mantenimiento[],
+        public mantenimiento: Mantenimiento[],
         public historialCampo: UbicacionCampo[],
     ) {}
 }

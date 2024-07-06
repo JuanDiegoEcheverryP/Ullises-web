@@ -1,0 +1,48 @@
+.body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    text-align: center;
+}
+.button-container {
+    display: flex;
+    flex-direction: column; /* Cambia la dirección del flex a columna */
+    gap: 20px; /* Espacio entre los botones */
+    margin-top: 40px;
+}
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 20px; /* Ajusta el padding para mantener el tamaño uniforme */
+    width: 200px; /* Tamaño fijo para todos los botones */
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btnTemp {
+    background-color: #ffa200 !important;
+    color: white;
+    border: none;
+    padding: 20px; /* Ajusta el padding para mantener el tamaño uniforme */
+    width: 200px; /* Tamaño fijo para todos los botones */
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+.btnTemp:hover {
+    background-color: #ff8400 !important;
+}

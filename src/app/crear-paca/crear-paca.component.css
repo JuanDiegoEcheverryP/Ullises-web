@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 2px 4px 5px #999999;
+}
+
+.container1 {
+    border-radius: 8px 8px 0px 0px;
+}
+
+.container2 {
+    border-radius: 0px 0px 8px 8px;
+}
+
+form {
+    
+    border: 5px solid #FFF;
+}
+
+/* Estilos para el grupo de formularios */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 200px; /* Flexbox para que los inputs y selects ocupen el espacio disponible */
+    max-width: 100%;
+}
+
+/* Estilos para las etiquetas */
+label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #5e5e5e;
+}
+
+.numeroDiv {
+    margin-right: 20px;
+}
+
+
+/* Estilos para el input */
+input[type="number"], select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #FFF;
+}
+
+.historial {
+    margin-top: 20px;
+    background-color: #f0f0f0;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

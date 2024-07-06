@@ -1,4 +1,4 @@
-.arco-container {
+.paca-container {
     border: 1px solid #ddd;
     border-radius: 8px;
     margin: 16px;
@@ -7,21 +7,21 @@
     transition: transform 0.2s;
   }
   
-  .arco-container:hover {
+  .paca-container:hover {
     transform: scale(1.02);
   }
   
-  .arco-header {
+  .paca-header {
     background-color: #f7f7f7;
     padding: 8px;
     border-bottom: 1px solid #ddd;
   }
   
-  .arco-details {
+  .paca-details {
     margin-top: 16px;
   }
   
-  .arco-section h4 {
+  .paca-section h4 {
     cursor: pointer;
     margin-top: 16px;
     margin-bottom: 8px;
@@ -34,7 +34,7 @@
     align-items: center;
   }
   
-  .arco-section h4:hover {
+  .paca-section h4:hover {
     background-color: #bdbdbd;
   }
   
@@ -44,54 +44,54 @@
     margin-left: 8px;
   }
   
-  .arco-section ul {
+  .paca-section ul {
     list-style-type: none;
     padding-left: 0;
   }
   
-  .arco-section li {
+  .paca-section li {
     padding: 4px 0;
     border-bottom: 1px solid #eee;
   }
 
-  .arco-section ul {
+  .paca-section ul {
     max-height: 300px;
     overflow-y: scroll;
 }
   
   @media (min-width: 768px) {
-    .arco-container {
+    .paca-container {
       display: flex;
       flex-direction: column;
     }
   
-    .arco-details {
+    .paca-details {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
     }
   
-    .arco-details p {
+    .paca-details p {
       flex: 1 1 45%;
       margin: 4px 0;
     }
   
-    .arco-section {
+    .paca-section {
       flex: 1 1 100%;
     }
 
-    .arco-section ul {
+    .paca-section ul {
         max-height: 200px;
         overflow-y: scroll;
     }
   }
   
   @media (min-width: 1024px) {
-    .arco-container {
+    .paca-container {
       flex-direction: row;
     }
   
-    .arco-header, .arco-details, .arco-section {
+    .paca-header, .paca-details, .paca-section {
       flex: 1;
       margin: 8px;
     }

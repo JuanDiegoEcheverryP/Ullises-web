@@ -9,6 +9,10 @@ import { TestComponent } from './test/test.component';
 import { CrearArcoComponent } from './crear-arco/crear-arco.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VerArcosComponent } from './ver-arcos/ver-arcos.component';
+import { VerPacasComponent } from './ver-pacas/ver-pacas.component';
+import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
+import { ArquitecturaComponent } from './arquitectura/arquitectura.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { VerArcosComponent } from './ver-arcos/ver-arcos.component';
     TestComponent,
     CrearArcoComponent,
     VerArcosComponent,
+    VerPacasComponent,
+    MenuPrincipalComponent,
+    ArquitecturaComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
