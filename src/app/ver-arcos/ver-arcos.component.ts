@@ -50,6 +50,7 @@ export class VerArcosComponent {
     ));
 
     this.listaArcos  = arcos
+    this.listaArcos.sort((a, b) => a.id - b.id);
     this.cargado = true;
     console.log(this.listaArcos);
     

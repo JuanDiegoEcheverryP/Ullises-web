@@ -52,6 +52,7 @@ export class VerPacasComponent {
     ));
 
     this.listaPacas  = pacas
+    this.listaPacas.sort((a, b) => a.id - b.id);
     this.cargado = true;
     console.log(this.listaPacas);
     
