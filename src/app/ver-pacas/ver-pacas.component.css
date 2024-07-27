@@ -175,3 +175,15 @@
     cursor: pointer; /* Cursor de puntero */
     transition: background-color 0.3s; /* Transición de color de fondo */
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-day-btn {
+  /* Puedes añadir estilos adicionales para los botones aquí */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -38,7 +38,19 @@ export class VerArcosComponent {
     
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    if (await this.SharedServiceService.checkNewArcos()) {
+      const arcosString = sessionStorage.getItem('arcos');
+      if (arcosString) {
+        this.listaArcos = JSON.parse(arcosString) as Arco[];
+      } else {
+        this.listaArcos = await this.SharedServiceService.withTimeout(this.SharedServiceService.arcosBuild(), 5000); // 5 seconds timeout
+        sessionStorage.setItem('arcos', JSON.stringify(this.listaArcos));
+      }
+    } else {
+      this.listaArcos = await this.SharedServiceService.withTimeout(this.SharedServiceService.arcosBuild(), 5000); // 5 seconds timeout
+      sessionStorage.setItem('arcos', JSON.stringify(this.listaArcos));
+    }
     this.obtenerArcos()
     
     // Inicializar los arrays de visualización
@@ -46,11 +58,10 @@ export class VerArcosComponent {
     this.showHistorial = new Array(this.listaArcos.length).fill(false);
   }
 
-  async obtenerArcos() {
-    this.listaArcos  = await this.SharedServiceService.withTimeout(this.SharedServiceService.arcosBuild(), 5000); // 5 seconds timeout
+  obtenerArcos() {
     this.listaArcos.sort((a, b) => a.id - b.id);
     this.cargado = true;
-    console.log(this.listaArcos);
+    //console.log(this.listaArcos);
     this.findAll()
   }
 

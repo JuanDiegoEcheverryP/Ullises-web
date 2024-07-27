@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
-
+<app-alert
+[show]="isPopupVisible"
+[title]="popupTitle"
+[message]="popupMessage"
+(close)="onPopupClose()"
+></app-alert>
 <h1>Agregar Historial</h1>
 
 <h2> Paca #{{actual.id}} Tipo {{actual.tipo}}</h2>

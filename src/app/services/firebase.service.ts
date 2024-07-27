@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, setDoc, getDoc, deleteDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, setDoc, getDoc, deleteDoc, getDocs, updateDoc, arrayUnion } from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class FirebaseService {
     try {
       const Ref = doc(this.db, collection, document);
       await setDoc(Ref, data);
-      console.log("Document written with ID: " + document);
+      console.log("Resource write used. Document written with ID: " + document);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -38,9 +38,10 @@ export class FirebaseService {
     try {
       const paca2Ref = doc(this.db, collection,document);
       const docSnap = await getDoc(paca2Ref);
-
+      console.log("Resource read used in " + collection + " => " + document);
+      
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
+        //console.log("Document data:", docSnap.data());
         return docSnap.data(); // Devuelve los datos del documento
       } else {
         console.log("No such document!");
@@ -56,7 +57,7 @@ export class FirebaseService {
     try {
       const Ref = doc(this.db, collection, document);
       await deleteDoc(Ref);
-      console.log("Document successfully deleted!");
+      console.log("Resource delete used.");
     } catch (e) {
       console.error("Error deleting document: ", e);
     }
@@ -65,6 +66,7 @@ export class FirebaseService {
   async getAllDataFromCollection(colection:string) {
     try {
       const querySnapshot = await getDocs(collection(this.db, colection));
+      console.log("Resource read multiple used in " + colection);
       const allData: any[] = [];
       querySnapshot.forEach((doc) => {
         allData.push({ id: doc.id, ...doc.data() });
@@ -73,6 +75,30 @@ export class FirebaseService {
     } catch (e) {
       console.error("Error getting all documents: ", e);
       return [];
+    }
+  }
+
+  async updateFieldInDocument(collectionName: string, documentId: string, fieldName: string, newValue: any) {
+    try {
+      const docRef = doc(this.db, collectionName, documentId);
+      await updateDoc(docRef, {
+        [fieldName]: newValue
+      });
+      console.log("Document successfully updated!");
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  }
+
+  async addToArrayInDocument(collectionName: string, documentId: string, arrayFieldName: string, newValue: any) {
+    try {
+      const docRef = doc(this.db, collectionName, documentId);
+      await updateDoc(docRef, {
+        [arrayFieldName]: arrayUnion(newValue)
+      });
+      console.log("Value successfully added to array!");
+    } catch (error) {
+      console.error("Error adding value to array: ", error);
     }
   }
 

@@ -12,17 +12,27 @@ import { UbicacionCampo } from '../model/ubicacionCampo';
 })
 export class AddHistorialPacaComponent {
 
+  //Popup
+  actualizado: boolean = false;
+  isPopupVisible: boolean = false;
+  popupTitle: string = '';
+  popupMessage: string = '';
+
   actual: Paca = new Paca(-1,"Null")
   idPaca = ''
-  tipoPaca = "ssa"
+  tipoPaca = "s"
 
-  sedes = ['','Liceo Cervantes','Chia']
-  distancias = ['','0','5','10','18','30','50','60','70']
-  ubicaciones = ['','Clase','Practica libre']
+  sedes = this.SharedServiceService.getSedes()
+  distancias = this.SharedServiceService.getDistancias()
+  ubicaciones = this.SharedServiceService.getUbicaciones()
   
-  constructor(private firebaseService: FirebaseService, private router: Router,private SharedServiceService: SharedServiceService) {
+  constructor(private firebaseService: FirebaseService, 
+    private router: Router,
+    private SharedServiceService: SharedServiceService) {
     // Inicializa Firebase cuando se crea este componente
   }
+
+  
 
   async ngOnInit(): Promise<void> {
     const idPaca = sessionStorage.getItem('pacaId');
@@ -35,7 +45,6 @@ export class AddHistorialPacaComponent {
 
 
   }
-  
 
   Agregar(event: Event) {
     event.preventDefault(); // Previene el envío del formulario
@@ -48,10 +57,32 @@ export class AddHistorialPacaComponent {
 
     this.actual.historialCampo?.push(history)
 
+    this.SharedServiceService.updatePacasCode()
     const jsonString = JSON.stringify(this.actual);
     let newObj = JSON.parse(jsonString);
     this.firebaseService.addDocument("Pacas",this.actual.id.toString(),newObj)
     
     console.log('Fecha seleccionada:', fechaSeleccionada);
+
+    this.actualizadoPopup()
+    this.actualizado = true
+  }
+
+  showPopup() {
+    this.isPopupVisible = true;
+  }
+
+  onPopupClose() {
+    this.isPopupVisible = false;
+
+    if (this.actualizado) {
+      this.router.navigate(['/menu']);
+    }
+  }
+
+  actualizadoPopup() {
+    this.popupTitle = 'Información actualizada';
+    this.popupMessage = 'Agregado al historial';
+    this.showPopup()
   }
 }

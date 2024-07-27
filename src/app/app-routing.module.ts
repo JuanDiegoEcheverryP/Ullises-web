@@ -11,6 +11,7 @@ import { MenuPrincipalComponent } from './menu-principal/menu-principal.componen
 import { ArquitecturaComponent } from './arquitectura/arquitectura.component';
 import { EditarArcoComponent } from './editar-arco/editar-arco.component';
 import { AddHistorialPacaComponent } from './add-historial-paca/add-historial-paca.component';
+import { ArmarCampoComponent } from './armar-campo/armar-campo.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'menu', component: MenuPrincipalComponent },
   { path: 'arquitectura', component: ArquitecturaComponent },
   { path: 'add-historial-paca', component: AddHistorialPacaComponent },
+  { path: 'armarCampo', component: ArmarCampoComponent },
   { path: '**', component: MenuPrincipalComponent }
 ];
 

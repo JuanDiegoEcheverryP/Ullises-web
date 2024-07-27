@@ -28,14 +28,26 @@ export class VerPacasComponent {
     // Inicializa Firebase cuando se crea este componente
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    if (await this.SharedServiceService.checkNewPacas()) {
+      const pacasString = sessionStorage.getItem('pacas');
+      if (pacasString) {
+        this.listaPacas = JSON.parse(pacasString) as Paca[];
+      } else {
+        this.listaPacas = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacasBuild(), 5000); // 5 seconds timeout
+        sessionStorage.setItem('pacas', JSON.stringify(this.listaPacas));
+      }
+    } else {
+      this.listaPacas = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacasBuild(), 5000); // 5 seconds timeout
+      sessionStorage.setItem('pacas', JSON.stringify(this.listaPacas));
+    }
+
     this.obtenerPacas()
     this.showMantenimiento = new Array(this.listaPacas.length).fill(false);
     this.showHistorial = new Array(this.listaPacas.length).fill(false);
   }
 
   async obtenerPacas() {
-    this.listaPacas  = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacasBuild(), 5000); // 5 seconds timeout
     this.listaPacas.sort((a, b) => a.id - b.id);
     this.cargado = true;
     console.log(this.listaPacas);

@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="loader-container" *ngIf="!cargado">
+    <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
+</div>
+
+<app-alert
+[show]="isPopupVisible"
+[title]="popupTitle"
+[message]="popupMessage"
+(close)="onPopupClose()"
+></app-alert>
+
+<div class="form-group">
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" required>
+    <label for="sede">Sede</label>
+    <select id="sede">
+        <option *ngFor="let sede of sedes" [value]="sede">{{sede}}</option>
+    </select>
+</div>
+
+
+<!-- armar-campo.component.html -->
+<div class="checklist" *ngIf="cargado">
+    <h2>Lista de Pacas</h2>
+    <ul>
+        <li *ngFor="let pacaSelection of listaPacaSelection" [class.seleccionada]="pacaSelection.seleccionada">
+            <input type="checkbox" id="checkbox-{{ pacaSelection.paca.id }}" (click)="toggleSeleccion(pacaSelection)" />
+            <label for="checkbox-{{ pacaSelection.paca.id }}">#{{ pacaSelection.paca.id }}</label>
+            <select id="distancia" (change)="updateDistancia(pacaSelection, $event)" *ngIf="pacaSelection.seleccionada">
+                <option value="" disabled selected>Distancia</option>
+                <option *ngFor="let distancia of distancias" [value]="distancia">{{ distancia }}</option>
+            </select>
+            <select id="ubicacion" (change)="updateUbicacion(pacaSelection, $event)" *ngIf="pacaSelection.seleccionada">
+                <option value="" disabled selected>Ubicacion</option>
+                <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">{{ ubicacion }}</option>
+            </select>
+        </li>
+    </ul>
+</div>
+
+<div class="form-group">
+    <button class="send-btn" (click)="enviar()">Enviar</button>
+</div>

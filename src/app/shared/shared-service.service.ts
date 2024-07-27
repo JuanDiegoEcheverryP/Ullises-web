@@ -63,6 +63,7 @@ export class SharedServiceService {
         h.arqueroId 
       ))
     ));
+
     return arcos
   }
 
@@ -126,5 +127,106 @@ export class SharedServiceService {
           reject(err);
         });
     });
+  }
+
+  async checkNewArcos(): Promise<boolean> {
+    try {
+      let data = await this.firebaseService.getData("meta", "updatecode");
+
+      // Verificar si `data` no es `null` y tiene el atributo `updateArcos`
+      if (data && data['updateArcos'] !== undefined) {
+        let updateCode = data['updateArcos'];
+        let arcoCode = sessionStorage.getItem('arcoCode');
+        
+        
+        if (updateCode != arcoCode) {
+          console.log(updateCode, arcoCode);
+          sessionStorage.setItem('arcoCode', updateCode);
+          // Asegurarse de que `arcoCode` no sea `null`
+          return false;
+        } else {
+          return true;
+        }
+      }
+  
+      return false;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return false;
+    }
+  }
+
+  async checkNewPacas(): Promise<boolean> {
+    try {
+      let data = await this.firebaseService.getData("meta", "updatecode");
+
+      // Verificar si `data` no es `null` y tiene el atributo `updateArcos`
+      if (data && data['updatePacas'] !== undefined) {
+        let updateCode = data['updatePacas'];
+        let pacaCode = sessionStorage.getItem('pacaCode');
+        
+        
+        if (updateCode != pacaCode) {
+          console.log(updateCode, pacaCode);
+          sessionStorage.setItem('pacaCode', updateCode);
+          // Asegurarse de que `arcoCode` no sea `null`
+          return false;
+        } else {
+          return true;
+        }
+      }
+  
+      return false;
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      return false;
+    }
+  }
+  
+  async updateArcosCode() {
+    const date = new Date().toISOString(); // Convertimos la fecha actual a una cadena ISO
+    const encoder = new TextEncoder();
+    const data = encoder.encode(date);
+
+    // Generar el hash usando el API SubtleCrypto
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    // Convertir el hash a una cadena hexadecimal
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    await this.firebaseService.updateFieldInDocument("meta", "updatecode","updateArcos",hashHex);
+    console.log(hashHex);
+    
+  }
+
+  async updatePacasCode() {
+    const date = new Date().toISOString(); // Convertimos la fecha actual a una cadena ISO
+    const encoder = new TextEncoder();
+    const data = encoder.encode(date);
+
+    // Generar el hash usando el API SubtleCrypto
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    // Convertir el hash a una cadena hexadecimal
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    await this.firebaseService.updateFieldInDocument("meta", "updatecode","updatePacas",hashHex);
+    console.log(hashHex);
+    
+  }
+  
+
+  getSedes() {
+    return ['','Liceo Cervantes','Chia','Taller']
+  }
+
+  getDistancias() {
+    return ['','0','5','10','18','30','50','60','70']
+  }
+
+  getUbicaciones() {
+    return ['','Clase','Practica libre']
   }
 }

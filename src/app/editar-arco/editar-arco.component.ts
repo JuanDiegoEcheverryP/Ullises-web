@@ -177,6 +177,8 @@ export class EditarArcoComponent implements OnInit {
     //Validacion
     if(numero != 0){
       //let a = await this.firebaseService.getData("Arcos",newArco.id.toString());
+
+      this.SharedServiceService.updateArcosCode()
       let newObj = JSON.parse(jsonString);
       this.firebaseService.addDocument("Arcos",newArco.id.toString(),newObj)
 

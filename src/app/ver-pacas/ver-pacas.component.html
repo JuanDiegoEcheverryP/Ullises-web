@@ -4,7 +4,12 @@
 </div>
 <div class="paca-container" *ngFor="let paca of listaPacas; let i = index">
     <div class="paca-header">
-        <h3>Paca ID: {{ paca.id }}</h3>
+        <h3>Paca ID: {{ paca.id }} </h3>
+        <div class="button-container">
+            <button class="add-day-btn" (click)="addCampo(paca.id, paca.tipo)">Agregar historial</button>
+            <!--<button class="add-day-btn">Agregar mantenimiento (no disponible)</button>-->
+        </div>
+        
     </div>
     <div class="paca-details">
         <p><strong>Tipo:</strong> {{ paca.tipo }}</p>
@@ -37,7 +42,7 @@
         <span class="arrow">{{ showHistorial[i] ? '▼' : '▶' }}</span>
         </h4>
       <ul *ngIf="showHistorial[i]">
-        <button class="add-day-btn" (click)="addCampo(paca.id,paca.tipo)">Añadir dia</button>
+        
         <li *ngFor="let h of paca.historialCampo">
             <p><strong>Fecha: </strong>{{ h.fecha }}</p>
             <p><strong>Sede: </strong>{{ h.sede }}</p>
