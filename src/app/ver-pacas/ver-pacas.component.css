@@ -161,4 +161,17 @@
     width: 100px; /* Ancho de la imagen de carga, puedes ajustarlo según sea necesario */
     height: auto; /* Mantiene la relación de aspecto de la imagen */
 }
-  
+
+
+.add-day-btn {
+  background-color: #ffac47; /* Color de fondo verde */
+    color: white; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 16px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como elemento en línea */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Transición de color de fondo */
+}

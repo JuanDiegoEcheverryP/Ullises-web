@@ -5,6 +5,8 @@ import { Mantenimiento } from '../model/mantenimiento';
 import { PrestamoArco } from '../model/prestamoArco';
 import { Paca } from '../model/paca';
 import { UbicacionCampo } from '../model/ubicacionCampo';
+import { Router } from '@angular/router';
+import {SharedServiceService} from '../shared/shared-service.service'
 
 @Component({
   selector: 'app-ver-pacas',
@@ -12,13 +14,17 @@ import { UbicacionCampo } from '../model/ubicacionCampo';
   styleUrls: ['./ver-pacas.component.css']
 })
 export class VerPacasComponent {
+
   public cargado: boolean = false
 
   public listaPacas: Paca[] = [];
   showMantenimiento: boolean[] = [];
   showHistorial: boolean[] = [];
 
-  constructor(private firebaseService: FirebaseService) {
+  constructor(private firebaseService: FirebaseService,
+    private router: Router,
+    private SharedServiceService: SharedServiceService
+  ) {
     // Inicializa Firebase cuando se crea este componente
   }
 
@@ -29,29 +35,7 @@ export class VerPacasComponent {
   }
 
   async obtenerPacas() {
-    let tmp = await this.firebaseService.getAllDataFromCollection("Pacas");
-
-    const pacas: Paca[] = tmp.map(element => new Paca(
-      element.id,
-      element.tipo,
-      element.ubicacion,
-      element.sede,
-      element.estado,
-      element.mantenimiento.map((m: { fecha: string; empleadoId: number; concepto: string; }) => new Mantenimiento(
-        m.fecha,
-        m.empleadoId,
-        m.concepto
-      )),
-      element.historialCampo.map((h: { fecha: string; pacaId: number, sedeId: number, ubicacion: string, distancia: number}) => new UbicacionCampo(
-        h.distancia,
-        h.ubicacion,
-        h.sedeId,
-        h.fecha,
-        h.pacaId
-      ))
-    ));
-
-    this.listaPacas  = pacas
+    this.listaPacas  = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacasBuild(), 5000); // 5 seconds timeout
     this.listaPacas.sort((a, b) => a.id - b.id);
     this.cargado = true;
     console.log(this.listaPacas);
@@ -64,5 +48,11 @@ export class VerPacasComponent {
     } else if (section === 'historial') {
       this.showHistorial[index] = !this.showHistorial[index];
     }
+  }
+
+  addCampo(id:number,tipo:string) {
+    sessionStorage.setItem('pacaId', id.toString());
+    sessionStorage.setItem('tipoPaca', tipo);
+    this.router.navigate([`add-historial-paca`]);
   }
 }

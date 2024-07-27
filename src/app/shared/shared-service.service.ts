@@ -3,6 +3,8 @@ import { FirebaseService } from '../services/firebase.service';
 import { Arco } from '../model/arco';
 import { Mantenimiento } from '../model/mantenimiento';
 import { PrestamoArco } from '../model/prestamoArco';
+import { Paca } from '../model/paca';
+import { UbicacionCampo } from '../model/ubicacionCampo';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +64,50 @@ export class SharedServiceService {
       ))
     ));
     return arcos
+  }
+
+  async pacaBuild(idPaca: string): Promise<Paca> {
+    let paca = new Paca(-1,'Null');
+    let data = await this.firebaseService.getData("Pacas", idPaca);
+    if (data) {
+      let paca = new Paca(
+        data['id'],
+        data['tipo'],
+        data['ubicacion'] || undefined,
+        data['sede'] || undefined,
+        data['estado'] || undefined,
+        data['mantenimiento'] || undefined,
+        data['historialCampo'] || undefined
+      );
+      return paca
+    }
+
+    return paca;
+  }
+
+  async pacasBuild(): Promise<Paca[]> {
+    let tmp = await this.firebaseService.getAllDataFromCollection("Pacas");
+
+    const pacas: Paca[] = tmp.map(element => new Paca(
+      element.id,
+      element.tipo,
+      element.ubicacion,
+      element.sede,
+      element.estado,
+      element.mantenimiento.map((m: { fecha: string; empleadoId: number; concepto: string; }) => new Mantenimiento(
+        m.fecha,
+        m.empleadoId,
+        m.concepto
+      )),
+      element.historialCampo.map((h: { fecha: string; pacaId: number, sede: string, ubicacion: string, distancia: number}) => new UbicacionCampo(
+        h.distancia,
+        h.ubicacion,
+        h.sede,
+        h.fecha,
+        h.pacaId
+      ))
+    ));
+    return pacas
   }
 
   withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {

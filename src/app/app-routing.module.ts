@@ -10,6 +10,7 @@ import { VerPacasComponent } from './ver-pacas/ver-pacas.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { ArquitecturaComponent } from './arquitectura/arquitectura.component';
 import { EditarArcoComponent } from './editar-arco/editar-arco.component';
+import { AddHistorialPacaComponent } from './add-historial-paca/add-historial-paca.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'editar-arco', component: EditarArcoComponent },
   { path: 'menu', component: MenuPrincipalComponent },
   { path: 'arquitectura', component: ArquitecturaComponent },
+  { path: 'add-historial-paca', component: AddHistorialPacaComponent },
   { path: '**', component: MenuPrincipalComponent }
 ];
 

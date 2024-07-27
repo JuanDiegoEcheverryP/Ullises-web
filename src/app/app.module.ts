@@ -15,6 +15,7 @@ import { ArquitecturaComponent } from './arquitectura/arquitectura.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditarArcoComponent } from './editar-arco/editar-arco.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { AddHistorialPacaComponent } from './add-historial-paca/add-historial-paca.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AlertComponent } from './components/alert/alert.component';
     NavbarComponent,
     EditarArcoComponent,
     AlertComponent,
+    AddHistorialPacaComponent,
   ],
   imports: [
     BrowserModule,

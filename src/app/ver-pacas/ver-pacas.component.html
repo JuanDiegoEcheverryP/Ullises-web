@@ -37,9 +37,10 @@
         <span class="arrow">{{ showHistorial[i] ? '▼' : '▶' }}</span>
         </h4>
       <ul *ngIf="showHistorial[i]">
+        <button class="add-day-btn" (click)="addCampo(paca.id,paca.tipo)">Añadir dia</button>
         <li *ngFor="let h of paca.historialCampo">
             <p><strong>Fecha: </strong>{{ h.fecha }}</p>
-            <p><strong>Sede: </strong>{{ h.sedeId }}</p>
+            <p><strong>Sede: </strong>{{ h.sede }}</p>
             <p><strong>Ubicacion: </strong>{{ h.ubicacion }}</p>
             <p><strong>Distancia: </strong>{{ h.distancia }}</p>
             <div class="button-container">
@@ -47,6 +48,7 @@
                 <button class="btn-eliminar">Eliminar</button>
             </div>
         </li>
-        </ul>
+      </ul>
+      
     </div>
 </div>

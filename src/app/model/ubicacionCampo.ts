@@ -5,8 +5,8 @@ export class UbicacionCampo {
     constructor(
         public distancia: number,
         public ubicacion: string,
-        public sedeId: number,
+        public sede: string,
         public fecha: string,
-        public pacaId: number,
+        public pacaId?: number,
     ) { }
 }
