@@ -172,3 +172,84 @@ align-items: center;
   display: inline-block; /* Asegura que los botones no se vean afectados por flex */
   margin: 5px; /* Agrega márgenes si es necesario */
 }
+
+
+
+
+
+
+
+
+#filtrado {
+  margin-top: 10px;
+  padding: 10px 5px;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+}
+
+#filtrado:hover {
+  cursor: pointer;
+}
+
+.filter-dropdown {
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.filter-title {
+  color: #4A90E2;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.filter-content {
+  display: none; /* Ocultamos el contenido por defecto */
+  padding: 10px;
+}
+
+.dropdown {
+  margin-bottom: 10px;
+}
+
+.dropdown-label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.dropdown select {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #4A90E2;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #555;
+  transition: border-color 0.3s ease;
+}
+
+.dropdown select:focus {
+  border-color: #e8a221;
+  outline: none;
+}
+
+.dropdown select option {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Estilo para el efecto de mostrar/ocultar el dropdown */
+.filter-dropdown.active .filter-content {
+  display: block; /* Mostramos el contenido si está activo */
+}
+
+.filter-container {
+  padding: 0 30px;
+}

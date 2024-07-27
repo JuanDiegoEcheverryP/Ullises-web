@@ -1,4 +1,10 @@
 <app-navbar></app-navbar>
+<app-alert
+[show]="isPopupVisible"
+[title]="popupTitle"
+[message]="popupMessage"
+(close)="onPopupClose()"
+></app-alert>
 <form onsubmit="return false" >
     <div class="container container1">
         <div class="form-group numeroDiv">

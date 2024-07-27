@@ -1,4 +1,10 @@
 <app-navbar></app-navbar>
+<app-alert
+[show]="isPopupVisible"
+[title]="popupTitle"
+[message]="popupMessage"
+(close)="onPopupClose()"
+></app-alert>
 <form onsubmit="return false" >
     <div class="container container1">
         <div class="form-group numeroDiv">
@@ -33,6 +39,32 @@
             <label for="estado">Estado</label>
             <select id="estado">
                 <option *ngFor="let estado of estadoArcos" [value]="estado">{{estado}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="container container2">
+        <div class="form-group">
+            <label for="cuerda">Estado cuerda</label>
+            <select id="cuerda">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="rest">Estado rest</label>
+            <select id="rest">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="palas">Estado palas</label>
+            <select id="palas">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="pintura">Estado pintura</label>
+            <select id="pintura">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
             </select>
         </div>
     </div>

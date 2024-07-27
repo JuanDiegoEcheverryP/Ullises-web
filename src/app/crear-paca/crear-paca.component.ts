@@ -15,7 +15,11 @@ import { UbicacionCampo } from '../model/ubicacionCampo';
 export class CrearPacaComponent {
   json: any;
   
-  
+  //Popup
+  actualizado: boolean = false;
+  isPopupVisible: boolean = false;
+  popupTitle: string = '';
+  popupMessage: string = '';
 
   //Opciones
   public historialCampo: UbicacionCampo[] = []
@@ -93,12 +97,30 @@ export class CrearPacaComponent {
         let newObj = JSON.parse(jsonString);
         this.firebaseService.addDocument("Pacas",newPaca.id.toString(),newObj)
 
-        alert("Paca agregada")
-        this.router.navigate(['/menu']);
+        this.actualizado = true
+        this.actualizadoPopup()
       }
       else {
         alert("Paca ya existe")
       }
     }
+  }
+
+  showPopup() {
+    this.isPopupVisible = true;
+  }
+
+  onPopupClose() {
+    this.isPopupVisible = false;
+
+    if (this.actualizado) {
+      this.router.navigate(['/menu']);
+    }
+  }
+
+  actualizadoPopup() {
+    this.popupTitle = 'Registro completado';
+    this.popupMessage = 'Paca añadida';
+    this.showPopup()
   }
 }

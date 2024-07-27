@@ -2,9 +2,50 @@
 <div class="loader-container" *ngIf="!cargado">
     <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
 </div>
-  
+<div class="filter-container" >
+    
+    <h3 id="filtrado" (click)="toggleFilter()">Filtros {{ filtro ? '▼' : '▶' }}</h3>
 
-<div class="arco-container" *ngFor="let arco of listaArcos; let i = index">
+    <div *ngIf="filtro">
+        <div class="dropdown">
+            <label class="dropdown-label" for="tipo">Tipo</label>
+            <select id="tipo" (change)="filtrarArcos()">
+                <option *ngFor="let tipo of filtroTipo" [value]="tipo">{{tipo}}</option>
+            </select>
+        </div>
+    
+        <div class="dropdown">
+            <label class="dropdown-label" for="calidad">Calidad</label>
+            <select id="calidad" (change)="filtrarArcos()">
+                <option *ngFor="let tipo of filtroCalidad" [value]="tipo">{{tipo}}</option>
+            </select>
+        </div>
+    
+        <div class="dropdown">
+            <label class="dropdown-label" for="estado">Estado</label>
+            <select id="estado" (change)="filtrarArcos()">
+                <option *ngFor="let tipo of filtroEstado" [value]="tipo">{{tipo}}</option>
+            </select>
+        </div>
+    
+        <div class="dropdown">
+            <label class="dropdown-label" for="libraje">Libraje</label>
+            <select id="libraje" (change)="filtrarArcos()">
+                <option *ngFor="let tipo of filtroLibraje" [value]="tipo">{{tipo}}</option>
+            </select>
+        </div>
+    
+        <div class="dropdown">
+            <label class="dropdown-label" for="mano">Mano</label>
+            <select id="mano" (change)="filtrarArcos()">
+                <option *ngFor="let tipo of filtroMano" [value]="tipo">{{tipo}}</option>
+            </select>
+        </div>
+    </div>
+    
+</div>
+
+<div class="arco-container" *ngFor="let arco of listaArcosStaged; let i = index">
     <div class="arco-header">
         <h3>Arco ID: {{ arco.id }}</h3>
     </div>

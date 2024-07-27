@@ -17,13 +17,14 @@ interface ArcoData {
   styleUrls: ['./editar-arco.component.css']
 })
 export class EditarArcoComponent implements OnInit {
-  public title: string = '';
-  public message: string = '';
-  public isVisible: boolean = false;
+
+  //Popup
+  actualizado: boolean = false;
+  isPopupVisible: boolean = false;
+  popupTitle: string = '';
+  popupMessage: string = '';
 
   public cargado: boolean = false
-
-  public numeroArco: number = 10; // Valor por defecto
 
   //Opciones
   public calidadArcos: string[] = [];
@@ -53,6 +54,18 @@ export class EditarArcoComponent implements OnInit {
     private router: Router, 
     private SharedServiceService: SharedServiceService) {
     // Inicializa Firebase cuando se crea este componente
+  }
+
+  showPopup() {
+    this.isPopupVisible = true;
+  }
+
+  onPopupClose() {
+    this.isPopupVisible = false;
+
+    if (this.actualizado) {
+      this.router.navigate(['/menu']);
+    }
   }
 
   ngOnInit(): void {
@@ -167,8 +180,8 @@ export class EditarArcoComponent implements OnInit {
       let newObj = JSON.parse(jsonString);
       this.firebaseService.addDocument("Arcos",newArco.id.toString(),newObj)
 
-      alert("Arco actualizado")
-      this.router.navigate(['/menu']);
+      this.actualizadoPopup()
+      this.actualizado = true
     }
   }
 
@@ -242,18 +255,10 @@ export class EditarArcoComponent implements OnInit {
     }
   }
 
-  isPopupVisible: boolean = false;
-
-  showPopup() {
-    this.isPopupVisible = true;
-  }
-
-  handleClose() {
-    console.log('Popup cerrado');
-  }
-
-  handleConfirm() {
-    console.log('Acción confirmada');
+  actualizadoPopup() {
+    this.popupTitle = 'Información actualizada';
+    this.popupMessage = 'Arco actualizado';
+    this.showPopup()
   }
   
 }

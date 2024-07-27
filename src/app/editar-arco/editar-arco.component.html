@@ -3,6 +3,13 @@
     <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
 </div>
 <!-- some-component.component.html -->
+ <!-- En el componente donde quieres usar el popup -->
+<app-alert
+[show]="isPopupVisible"
+[title]="popupTitle"
+[message]="popupMessage"
+(close)="onPopupClose()"
+></app-alert>
 
 <form onsubmit="return false" >
     <div class="container container1">

@@ -14,7 +14,11 @@ import { Router } from '@angular/router';
 export class CrearArcoComponent implements OnInit {
   json: any;
   
-  
+  //Popup
+  actualizado: boolean = false;
+  isPopupVisible: boolean = false;
+  popupTitle: string = '';
+  popupMessage: string = '';
 
   //Opciones
   public calidadArcos: string[] = [];
@@ -86,9 +90,13 @@ export class CrearArcoComponent implements OnInit {
     const mano = (document.getElementById('mano') as HTMLSelectElement).value;
     const calidad = (document.getElementById('calidad') as HTMLSelectElement).value;
     const estado = (document.getElementById('estado') as HTMLSelectElement).value;
+    const cuerda = (document.getElementById('cuerda') as HTMLSelectElement).value;
+    const rest = (document.getElementById('rest') as HTMLSelectElement).value;
+    const palas = (document.getElementById('palas') as HTMLSelectElement).value;
+    const pintura = (document.getElementById('pintura') as HTMLSelectElement).value;
 
     //meter a model
-    let newArco = new Arco(numero,calidad,estado,libraje,tipoArco,mano,"","","","",this.mantenimiento,this.historial)
+    let newArco = new Arco(numero,calidad,estado,libraje,tipoArco,mano,cuerda,rest,palas,pintura,this.mantenimiento,this.historial)
 
     const jsonString = JSON.stringify(newArco);
 
@@ -99,8 +107,9 @@ export class CrearArcoComponent implements OnInit {
         let newObj = JSON.parse(jsonString);
         this.firebaseService.addDocument("Arcos",newArco.id.toString(),newObj)
 
-        alert("Arco agregado")
-        this.router.navigate(['/menu']);
+        this.actualizado = true
+        this.actualizadoPopup()
+
       }
       else {
         alert("Arco ya existe")
@@ -108,6 +117,24 @@ export class CrearArcoComponent implements OnInit {
         
       }
     }
+  }
+
+  showPopup() {
+    this.isPopupVisible = true;
+  }
+
+  onPopupClose() {
+    this.isPopupVisible = false;
+
+    if (this.actualizado) {
+      this.router.navigate(['/menu']);
+    }
+  }
+
+  actualizadoPopup() {
+    this.popupTitle = 'Registro completado';
+    this.popupMessage = 'Arco añadido';
+    this.showPopup()
   }
 }
 

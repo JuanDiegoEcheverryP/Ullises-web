@@ -1,1 +1,16 @@
-<p>alert works!</p>
+<!-- alert-popup.component.html -->
+<div class="popup-overlay" *ngIf="show">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>{{ title }}</h2>
+        <button class="close-btn" (click)="closePopup()">×</button>
+      </div>
+      <div class="popup-body">
+        <p>{{ message }}</p>
+      </div>
+      <div class="popup-footer">
+        <button (click)="closePopup()">OK</button>
+      </div>
+    </div>
+  </div>
+  
