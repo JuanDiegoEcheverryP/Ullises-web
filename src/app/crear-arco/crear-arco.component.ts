@@ -88,7 +88,7 @@ export class CrearArcoComponent implements OnInit {
     const estado = (document.getElementById('estado') as HTMLSelectElement).value;
 
     //meter a model
-    let newArco = new Arco(numero,calidad,estado,libraje,tipoArco,mano,this.mantenimiento,this.historial)
+    let newArco = new Arco(numero,calidad,estado,libraje,tipoArco,mano,"","","","",this.mantenimiento,this.historial)
 
     const jsonString = JSON.stringify(newArco);
 

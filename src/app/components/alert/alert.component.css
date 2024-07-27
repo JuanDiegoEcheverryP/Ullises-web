@@ -1,0 +1,14 @@
+/* alert-popup.component.css */
+h1 {
+    color: #ff4081;
+  }
+  
+  div[mat-dialog-content] {
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #ff4081;
+    color: white;
+  }
+  

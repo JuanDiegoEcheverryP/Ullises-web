@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="loader-container" *ngIf="!cargado">
     <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
-  </div>
+</div>
   
 
 <div class="arco-container" *ngFor="let arco of listaArcos; let i = index">
@@ -14,6 +14,11 @@
         <p><strong>Libraje:</strong> {{ arco.libraje }}</p>
         <p><strong>Tipo:</strong> {{ arco.tipo }}</p>
         <p><strong>Mano:</strong> {{ arco.mano }}</p>
+
+        <p><strong>Estado cuerda:</strong> {{ arco.estadoCuerda }}</p>
+        <p><strong>Estado rest:</strong> {{ arco.estadoRest }}</p>
+        <p><strong>Estado palas:</strong> {{ arco.estadoPalas }}</p>
+        <p><strong>Estado pintura:</strong> {{ arco.estadoPintura }}</p>
     </div>
     
     <div class="arco-section">
@@ -50,6 +55,10 @@
             </div>
         </li>
         </ul>
+    </div>
+    <div class="button-container arcoButtons">
+        <button class="btn-editar" (click)="editarArco(arco.id)">Editar</button>
+        <button class="btn-eliminar">Eliminar</button>
     </div>
 </div>
 

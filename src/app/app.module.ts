@@ -13,6 +13,8 @@ import { VerPacasComponent } from './ver-pacas/ver-pacas.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { ArquitecturaComponent } from './arquitectura/arquitectura.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { EditarArcoComponent } from './editar-arco/editar-arco.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MenuPrincipalComponent,
     ArquitecturaComponent,
     NavbarComponent,
+    EditarArcoComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

@@ -143,23 +143,32 @@
   .btn-eliminar:hover {
     background-color: #f44336a1; /* Color de fondo rojo oscuro al pasar el ratón */
   }
-
+  
   .loader-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw; /* O ajusta según sea necesario */
-    height: 100vh; /* O ajusta según sea necesario */
-    z-index: 1000; /* Asegura que esté en la parte superior */
-  }
-  
-  #load {
-    /* Opcional: si deseas ajustar el tamaño de la imagen */
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
+    position: fixed; /* Posiciona el contenedor de carga en relación a la ventana del navegador */
+    top: 0; /* Posición desde la parte superior de la ventana */
+    left: 0; /* Posición desde la izquierda de la ventana */
+    width: 100%; /* Ancho completo de la ventana */
+    height: 100%; /* Altura completa de la ventana */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+    display: flex; /* Usamos flexbox para centrar la imagen */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    z-index: 1000; /* Asegura que este contenedor esté por encima de otros elementos */
+}
+
+#load {
+    width: 100px; /* Ancho de la imagen de carga, puedes ajustarlo según sea necesario */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
+
+.arcoButtons {
+
+  display: flex;
+align-items: center;
+}
+
+.arcoButtons button {
+  display: inline-block; /* Asegura que los botones no se vean afectados por flex */
+  margin: 5px; /* Agrega márgenes si es necesario */
+}

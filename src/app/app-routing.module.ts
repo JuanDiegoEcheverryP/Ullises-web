@@ -9,6 +9,7 @@ import { VerArcosComponent } from './ver-arcos/ver-arcos.component';
 import { VerPacasComponent } from './ver-pacas/ver-pacas.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { ArquitecturaComponent } from './arquitectura/arquitectura.component';
+import { EditarArcoComponent } from './editar-arco/editar-arco.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'crearArco', component: CrearArcoComponent },
   { path: 'verArcos', component: VerArcosComponent },
   { path: 'verPacas', component: VerPacasComponent },
+  { path: 'editar-arco', component: EditarArcoComponent },
   { path: 'menu', component: MenuPrincipalComponent },
   { path: 'arquitectura', component: ArquitecturaComponent },
   { path: '**', component: MenuPrincipalComponent }

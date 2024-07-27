@@ -3,6 +3,8 @@ import { FirebaseService } from '../services/firebase.service';
 import { Arco } from '../model/arco';
 import { Mantenimiento } from '../model/mantenimiento';
 import { PrestamoArco } from '../model/prestamoArco';
+import { ActivatedRoute, Router } from '@angular/router';
+import {SharedServiceService} from '../shared/shared-service.service'
 
 @Component({
   selector: 'app-ver-arcos',
@@ -16,8 +18,11 @@ export class VerArcosComponent {
   showMantenimiento: boolean[] = [];
   showHistorial: boolean[] = [];
 
-  constructor(private firebaseService: FirebaseService) {
-    // Inicializa Firebase cuando se crea este componente
+  constructor(
+    private firebaseService: FirebaseService,
+    private router: Router,
+    private SharedServiceService: SharedServiceService) {
+    
   }
 
   ngOnInit(): void {
@@ -28,28 +33,7 @@ export class VerArcosComponent {
   }
 
   async obtenerArcos() {
-    let tmp = await this.firebaseService.getAllDataFromCollection("Arcos");
-
-    const arcos: Arco[] = tmp.map(element => new Arco(
-      element.id,
-      element.calidad,
-      element.estado,
-      element.libraje,
-      element.tipo,
-      element.mano,
-      element.mantenimiento.map((m: { fecha: string; empleadoId: number; concepto: string; }) => new Mantenimiento(
-        m.fecha,
-        m.empleadoId,
-        m.concepto
-      )),
-      element.historial.map((h: { fecha: string; sedeId: number; arqueroId: number; }) => new PrestamoArco(
-        h.fecha, 
-        h.sedeId, 
-        h.arqueroId 
-      ))
-    ));
-
-    this.listaArcos  = arcos
+    this.listaArcos  = await this.SharedServiceService.withTimeout(this.SharedServiceService.arcosBuild(), 5000); // 5 seconds timeout
     this.listaArcos.sort((a, b) => a.id - b.id);
     this.cargado = true;
     console.log(this.listaArcos);
@@ -63,4 +47,11 @@ export class VerArcosComponent {
       this.showHistorial[index] = !this.showHistorial[index];
     }
   }
+
+  editarArco(id:number) {
+    sessionStorage.setItem('arcoId', id.toString());
+    this.router.navigate([`editar-arco`]);
+  }
+
+  
 }

@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+<div class="loader-container" *ngIf="!cargado">
+    <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
+</div>
+<!-- some-component.component.html -->
+
+<form onsubmit="return false" >
+    <div class="container container1">
+        <div class="form-group numeroDiv">
+            <label for="numero">Número del arco</label>
+            <input id="numero" type="number" placeholder="Número del arco" min="1" required>
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select id="tipo">
+                <option *ngFor="let tipo of tipoArcos" [value]="tipo">{{tipo}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="libraje">Libraje</label>
+            <select id="libraje">
+                <option *ngFor="let libraje of librajeArcos" [value]="libraje">{{libraje}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="mano">Mano</label>
+            <select id="mano">
+                <option *ngFor="let mano of manoArcos" [value]="mano">{{mano}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="calidad">Calidad</label>
+            <select id="calidad">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="estado">Estado</label>
+            <select id="estado">
+                <option *ngFor="let estado of estadoArcos" [value]="estado">{{estado}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="container container2">
+        <div class="form-group">
+            <label for="cuerda">Estado cuerda</label>
+            <select id="cuerda">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="rest">Estado rest</label>
+            <select id="rest">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="palas">Estado palas</label>
+            <select id="palas">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="pintura">Estado pintura</label>
+            <select id="pintura">
+                <option *ngFor="let calidad of calidadArcos" [value]="calidad">{{calidad}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="container container3">
+        <button class="submit-btn" (click)="agregarRegistro()">Agregar Arco</button>
+    </div>
+</form>
