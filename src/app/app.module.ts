@@ -17,6 +17,8 @@ import { EditarArcoComponent } from './editar-arco/editar-arco.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { AddHistorialPacaComponent } from './add-historial-paca/add-historial-paca.component';
 import { ArmarCampoComponent } from './armar-campo/armar-campo.component';
+import { VerHistorialesPacasSedeComponent } from './ver-historiales-pacas-sede/ver-historiales-pacas-sede.component';
+import { MapToIterablePipe } from './map-to-iterable.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ArmarCampoComponent } from './armar-campo/armar-campo.component';
     AlertComponent,
     AddHistorialPacaComponent,
     ArmarCampoComponent,
+    VerHistorialesPacasSedeComponent,
+    MapToIterablePipe
   ],
   imports: [
     BrowserModule,

@@ -46,3 +46,11 @@
 .btnTemp:hover {
     background-color: #ff8400 !important;
 }
+
+button {
+    margin: 5px;
+}
+
+hr {
+    margin: 0 30px;
+}

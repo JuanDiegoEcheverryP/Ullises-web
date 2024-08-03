@@ -2,14 +2,24 @@
 <div class="body">
     <div class="container">
         <div class="button-container">
-          <button (click)="navigateTo('/crearArco')" class="btn">Crear arco</button>
-          <button (click)="navigateTo('/verArcos')" class="btn">Ver arcos</button>
-          <button (click)="navigateTo('/crearPaca')" class="btn">Crear pacas</button>
-          <button (click)="navigateTo('/verPacas')" class="btn">Ver pacas</button>
+          <div>
+            <h2>Registro de datos</h2>
+            <button (click)="navigateTo('/crearArco')" class="btn">Crear arco</button>
+            <button (click)="navigateTo('/crearPaca')" class="btn">Crear pacas</button>
+            <button (click)="navigateTo('/armarCampo')" class="btn">Armar campo</button>
+          </div>
+          <div>
+            <hr>
+            <h2>Visualizacion de datos</h2>
+            <button (click)="navigateTo('/verArcos')" class="btn">Ver arcos</button>
+            <button (click)="navigateTo('/verPacas')" class="btn">Ver pacas</button>
+            <button (click)="navigateTo('/ver-historial-pacas-sede')" class="btn">Ver fechas</button>
+          </div>
           <hr>
-          <button (click)="navigateTo('/armarCampo')" class="btn">Armar campo</button>
-          <hr>
-          <button (click)="navigateTo('/arquitectura')" class="btn btnTemp">Diagramas</button>
+          <div>
+            <button (click)="navigateTo('/arquitectura')" class="btn btnTemp">Diagramas</button>
+          </div>
+          
         </div>
       </div>
 </div>

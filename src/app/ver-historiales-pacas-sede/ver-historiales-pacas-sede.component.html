@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="loader-container" *ngIf="!cargado">
+    <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
+</div>
+
+<!-- ver-historiales-pacas-sede.component.html -->
+<div id="contenido">
+    <h2>Historial de Pacas por Sede y Fecha</h2>
+
+    <div class="sede" *ngFor="let sede of sedes">
+        <p (click)="toggleSede(sede)" class="sede-title">{{ sede.nombre }}</p>
+        
+        <div *ngIf="sede.expanded" class="fecha-container">
+            <div *ngFor="let fecha of sede.fechas" (click)="toggleFecha(fecha)">
+                <p class="fecha-title">{{ fecha.fecha }}</p>
+                
+                <table [ngClass]="{'show': fecha.expanded}" class="paca-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Distancia</th>
+                            <th>Ubicación</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let paca of fecha.pacas">
+                            <td>{{ paca.idPaca }}</td>
+                            <td>{{ paca.distancia }}</td>
+                            <td>{{ paca.ubicacion }}</td>
+                            <td>
+                                <button class="btn-editar">Editar</button>
+                                <button class="btn-eliminar">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
