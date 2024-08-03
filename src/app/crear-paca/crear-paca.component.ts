@@ -6,6 +6,7 @@ import { Mantenimiento } from '../model/mantenimiento';
 import { Router } from '@angular/router';
 import { Paca } from '../model/paca';
 import { UbicacionCampo } from '../model/ubicacionCampo';
+import {SharedServiceService} from '../shared/shared-service.service'
 
 @Component({
   selector: 'app-crear-paca',
@@ -32,7 +33,7 @@ export class CrearPacaComponent {
   public ubicacionPacas: string[] = [];
   public sedes: string[] = [];
 
-  constructor(private firebaseService: FirebaseService, private router: Router) {
+  constructor(private firebaseService: FirebaseService, private router: Router, private SharedServiceService: SharedServiceService) {
     // Inicializa Firebase cuando se crea este componente
   }
   
@@ -96,6 +97,7 @@ export class CrearPacaComponent {
       if (a == null) {
         let newObj = JSON.parse(jsonString);
         this.firebaseService.addDocument("Pacas",newPaca.id.toString(),newObj)
+        this.SharedServiceService.updatePacasCode()
 
         this.actualizado = true
         this.actualizadoPopup()

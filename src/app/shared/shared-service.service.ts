@@ -5,6 +5,7 @@ import { Mantenimiento } from '../model/mantenimiento';
 import { PrestamoArco } from '../model/prestamoArco';
 import { Paca } from '../model/paca';
 import { UbicacionCampo } from '../model/ubicacionCampo';
+import { elementAt } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -219,14 +220,62 @@ export class SharedServiceService {
   
 
   getSedes() {
-    return ['','Liceo Cervantes','Chia','Taller']
-  }
+    let tmp = this.firebaseService.getAllDataFromCollection("Sedes");
+    let retorno = ['']
+    tmp.then((data) => {
+        data.map((element: any) => {
+            retorno.push(element.id)
+        });
+    }).catch((error) => {
+        console.error("Error fetching data: ", error);
+    });
+
+    return retorno;
+}
+
 
   getDistancias() {
-    return ['','0','5','10','18','30','50','60','70']
+    let tmp = this.firebaseService.getData("Values", "Pacas");
+    let retorno = ['']
+
+    tmp.then((data) => {
+        // Asume que 'data' es un objeto y que quieres acceder a un atributo específico, por ejemplo, 'nombre'.
+        if (data && data['Distancia']) {
+            data['Distancia'].forEach((element: string) => {
+              retorno.push(element)
+            });
+        } else {
+            console.log("El atributo 'nombre' no existe en los datos recibidos");
+        }
+    }).catch((error) => {
+        console.error("Error fetching data: ", error);
+    });
+    
+    return retorno
   }
 
   getUbicaciones() {
-    return ['','Clase','Practica libre']
+    let tmp = this.firebaseService.getData("Values", "Pacas");
+    let retorno = ['']
+
+    tmp.then((data) => {
+        // Asume que 'data' es un objeto y que quieres acceder a un atributo específico, por ejemplo, 'nombre'.
+        if (data && data['Ubicacion']) {
+            data['Ubicacion'].forEach((element: string) => {
+              retorno.push(element)
+            });
+        } else {
+            console.log("El atributo 'nombre' no existe en los datos recibidos");
+        }
+    }).catch((error) => {
+        console.error("Error fetching data: ", error);
+    });
+    
+    return retorno
+  }
+
+  borrarCodigosHash() {
+    sessionStorage.setItem('arcoCode', '');
+    sessionStorage.setItem('pacaCode', '');
   }
 }

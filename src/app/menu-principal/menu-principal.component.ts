@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {SharedServiceService} from '../shared/shared-service.service'
 
 @Component({
   selector: 'app-menu-principal',
@@ -8,9 +9,17 @@ import { Router } from '@angular/router';
 })
 export class MenuPrincipalComponent {
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router,private SharedServiceService: SharedServiceService) { }
 
   navigateTo(url: string) {
     this.router.navigate([url]);
+  }
+
+  forceActualization() {
+    this.SharedServiceService.borrarCodigosHash()
+    let arcoCode = sessionStorage.getItem('arcoCode');
+    console.log(arcoCode);
+    
   }
 }

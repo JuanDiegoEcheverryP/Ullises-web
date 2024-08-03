@@ -40,6 +40,7 @@ export class CrearArcoComponent implements OnInit {
   //Registros
   itemName: string = '';
   items: string[] = [];
+  SharedServiceService: any;
 
   constructor(private firebaseService: FirebaseService, private router: Router) {
     // Inicializa Firebase cuando se crea este componente
@@ -106,6 +107,7 @@ export class CrearArcoComponent implements OnInit {
       if (a == null) {
         let newObj = JSON.parse(jsonString);
         this.firebaseService.addDocument("Arcos",newArco.id.toString(),newObj)
+        this.SharedServiceService.updateArcosCode()
 
         this.actualizado = true
         this.actualizadoPopup()
