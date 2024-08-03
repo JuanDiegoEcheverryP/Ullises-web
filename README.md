@@ -26,7 +26,7 @@ Url de despliegue 👉 https://ulisses-f6971.web.app
 
 ## Contribuciones 🤝
 
-¡Las contribuciones son bienvenidas! Si tienes sugerencias o mejoras, no dudes en abrir un issue o enviar un pull request.
+¡Las contribuciones son bienvenidas! Si tienes sugerencias abre un issue.
 
 ## Licencia 📄
 
