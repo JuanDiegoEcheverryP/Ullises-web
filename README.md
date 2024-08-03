@@ -16,7 +16,7 @@ npm run build
 firebase deploy
 ```
 
-Url de deslpiegue 👉 https://ulisses-f6971.web.app
+Url de despliegue 👉 https://ulisses-f6971.web.app
 # Consideraciones para implementar
 
 ## Recursos Útiles 📚
