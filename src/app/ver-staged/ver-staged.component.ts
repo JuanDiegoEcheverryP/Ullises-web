@@ -67,7 +67,7 @@ export class VerStagedComponent {
     private firebaseService: FirebaseService,
     private router: Router,
     private sharedServiceService: SharedServiceService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   async ngOnInit(): Promise<void> {

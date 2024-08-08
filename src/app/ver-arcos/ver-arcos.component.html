@@ -91,15 +91,15 @@
             <p><strong>Fecha: </strong>{{ h.fecha }}</p>
             <p><strong>Hora: </strong>{{ h.hora }}</p>
             <div class="button-container">
-                <button class="btn-editar">Editar</button>
-                <button class="btn-eliminar">Eliminar</button>
+                <button class="btn-editar" (click)="openSnackBar('Funcion no disponible')">Editar</button>
+                <button class="btn-eliminar" (click)="openSnackBar('Funcion no disponible')">Eliminar</button>
             </div>
         </li>
         </ul>
     </div>
     <div class="button-container arcoButtons">
         <button class="btn-editar" (click)="editarArco(arco.id)">Editar</button>
-        <button class="btn-eliminar">Eliminar</button>
+        <button class="btn-eliminar" (click)="openSnackBar('Funcion no disponible')">Eliminar</button>
     </div>
 </div>
 

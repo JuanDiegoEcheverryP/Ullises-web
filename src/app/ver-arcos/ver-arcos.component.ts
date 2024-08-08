@@ -6,6 +6,7 @@ import { PrestamoArco } from '../model/prestamoArco';
 import { ActivatedRoute, Router } from '@angular/router';
 import {SharedServiceService} from '../shared/shared-service.service'
 import { find } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ver-arcos',
@@ -34,7 +35,8 @@ export class VerArcosComponent {
   constructor(
     private firebaseService: FirebaseService,
     private router: Router,
-    private SharedServiceService: SharedServiceService) {
+    private SharedServiceService: SharedServiceService,
+    private snackBar: MatSnackBar) {
     
   }
 
@@ -112,5 +114,13 @@ export class VerArcosComponent {
       else {
         this.filtro = true
       }
+  }
+
+  openSnackBar(message: string, action: string = 'Cerrar') {
+    this.snackBar.open(message, action, {
+      duration: 3000, // duración del snackbar en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }

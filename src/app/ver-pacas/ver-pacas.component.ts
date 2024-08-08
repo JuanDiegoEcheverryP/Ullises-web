@@ -7,6 +7,7 @@ import { Paca } from '../model/paca';
 import { UbicacionCampo } from '../model/ubicacionCampo';
 import { Router } from '@angular/router';
 import {SharedServiceService} from '../shared/shared-service.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ver-pacas',
@@ -23,7 +24,8 @@ export class VerPacasComponent {
 
   constructor(private firebaseService: FirebaseService,
     private router: Router,
-    private SharedServiceService: SharedServiceService
+    private SharedServiceService: SharedServiceService,
+    private snackBar: MatSnackBar
   ) {
     // Inicializa Firebase cuando se crea este componente
   }
@@ -66,5 +68,13 @@ export class VerPacasComponent {
     sessionStorage.setItem('pacaId', id.toString());
     sessionStorage.setItem('tipoPaca', tipo);
     this.router.navigate([`add-historial-paca`]);
+  }
+
+  openSnackBar(message: string, action: string = 'Cerrar') {
+    this.snackBar.open(message, action, {
+      duration: 3000, // duración del snackbar en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }
