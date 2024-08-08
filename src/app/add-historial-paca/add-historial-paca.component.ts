@@ -29,25 +29,19 @@ export class AddHistorialPacaComponent {
   constructor(private firebaseService: FirebaseService, 
     private router: Router,
     private SharedServiceService: SharedServiceService) {
-    // Inicializa Firebase cuando se crea este componente
   }
-
-  
 
   async ngOnInit(): Promise<void> {
     const idPaca = sessionStorage.getItem('pacaId');
     const tipoPaca = sessionStorage.getItem('tipoPaca');
   
-    this.idPaca = idPaca !== null ? idPaca : ''; // Asigna un string vacío si es null
-    this.tipoPaca = tipoPaca !== null ? tipoPaca : ''; // Asigna un string vacío si es null
-
-    this.actual  = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacaBuild(this.idPaca), 5000); // 5 seconds timeout
-
-
+    this.idPaca = idPaca !== null ? idPaca : '';
+    this.tipoPaca = tipoPaca !== null ? tipoPaca : '';
+    this.actual  = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacaBuild(this.idPaca), 5000);
   }
 
   Agregar(event: Event) {
-    event.preventDefault(); // Previene el envío del formulario
+    event.preventDefault();
     const fechaSeleccionada = (document.getElementById('fecha') as HTMLInputElement).value;
     const inputSede = (document.getElementById('sede') as HTMLInputElement).value;
     const inputDistancia = (document.getElementById('distancia') as HTMLInputElement).value;

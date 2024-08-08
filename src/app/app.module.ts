@@ -19,6 +19,11 @@ import { AddHistorialPacaComponent } from './add-historial-paca/add-historial-pa
 import { ArmarCampoComponent } from './armar-campo/armar-campo.component';
 import { VerHistorialesPacasSedeComponent } from './ver-historiales-pacas-sede/ver-historiales-pacas-sede.component';
 import { MapToIterablePipe } from './map-to-iterable.pipe';
+import { PrestamoArcoComponent } from './prestamo-arco/prestamo-arco.component';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { VerStagedComponent } from './ver-staged/ver-staged.component';
+import { PromptComponent } from './components/prompt/prompt.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +42,18 @@ import { MapToIterablePipe } from './map-to-iterable.pipe';
     AddHistorialPacaComponent,
     ArmarCampoComponent,
     VerHistorialesPacasSedeComponent,
-    MapToIterablePipe
+    MapToIterablePipe,
+    PrestamoArcoComponent,
+    VerStagedComponent,
+    PromptComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule // Asegúrate de que el módulo de enrutamiento esté importado aquí
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

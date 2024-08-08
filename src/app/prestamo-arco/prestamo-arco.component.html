@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="loader-container" *ngIf="!cargado">
+    <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
+</div>
+
+<app-alert
+[show]="isPopupVisible"
+[title]="popupTitle"
+[message]="popupMessage"
+(close)="onPopupClose()"
+></app-alert>
+
+
+
+<div class="form-group">
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" required>
+    <label for="time">Hora:</label>
+    <input type="time" id="time" class="custom-time-input">
+    <label for="sede">Sede</label>
+    <select id="sede">
+        <option *ngFor="let sede of sedes" [value]="sede">{{sede}}</option>
+    </select>
+    
+</div>
+
+<div class="checklist" *ngIf="cargado">
+    <h2>Lista de Arcos</h2>
+    <div class="input-button-group">  <!-- Contenedor agregado para agrupar input y botón -->
+        <input type="number" id="add-arco" name="fname" placeholder="Agregar por número">
+        <button class="add-btn" (click)="addArco()">+</button>
+    </div>
+    <hr>
+    <ul>
+        <li *ngFor="let arcoSelection of listaArcosSelection" [class.seleccionada]="arcoSelection.seleccionada">
+            <input type="checkbox" id="checkbox-{{ arcoSelection.arco.id }}" (click)="toggleSeleccion(arcoSelection)" />
+            <label for="checkbox-{{ arcoSelection.arco.id }}">#{{ arcoSelection.arco.id }}</label>
+        </li>
+    </ul>
+</div>
+
+<div class="form-group">
+    <button class="send-btn" (click)="enviar()">Enviar</button>
+</div>

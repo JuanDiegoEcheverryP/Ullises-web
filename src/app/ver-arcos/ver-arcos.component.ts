@@ -53,7 +53,6 @@ export class VerArcosComponent {
     }
     this.obtenerArcos()
     
-    // Inicializar los arrays de visualización
     this.showMantenimiento = new Array(this.listaArcos.length).fill(false);
     this.showHistorial = new Array(this.listaArcos.length).fill(false);
   }
@@ -61,7 +60,6 @@ export class VerArcosComponent {
   obtenerArcos() {
     this.listaArcos.sort((a, b) => a.id - b.id);
     this.cargado = true;
-    //console.log(this.listaArcos);
     this.findAll()
   }
 
@@ -104,7 +102,6 @@ export class VerArcosComponent {
         this.listaArcosStaged.push(element)
       }
     });
-
     
   }
   

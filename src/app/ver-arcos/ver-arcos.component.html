@@ -87,9 +87,9 @@
         </h4>
       <ul *ngIf="showHistorial[i]">
         <li *ngFor="let h of arco.historial">
+            <p><strong>Sede: </strong>{{ h.sede }}</p>
             <p><strong>Fecha: </strong>{{ h.fecha }}</p>
-            <p><strong>Sede: </strong>{{ h.sedeId }}</p>
-            <p><strong>Arquero: </strong>{{ h.arqueroId }}</p>
+            <p><strong>Hora: </strong>{{ h.hora }}</p>
             <div class="button-container">
                 <button class="btn-editar">Editar</button>
                 <button class="btn-eliminar">Eliminar</button>

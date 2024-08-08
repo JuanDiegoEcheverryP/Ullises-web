@@ -139,7 +139,3 @@ export class CrearArcoComponent implements OnInit {
     this.showPopup()
   }
 }
-
-
-
-//console.log(this.firebaseService.getData("Values","Arcos"));

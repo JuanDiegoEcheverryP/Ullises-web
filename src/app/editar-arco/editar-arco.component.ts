@@ -136,8 +136,6 @@ export class EditarArcoComponent implements OnInit {
     }
   }
   
-  
-  // Helper method to add a timeout
   private withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
     return new Promise((resolve, reject) => {
       const timeoutId = setTimeout(() => {

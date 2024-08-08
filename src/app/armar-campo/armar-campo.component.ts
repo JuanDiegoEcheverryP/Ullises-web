@@ -31,30 +31,16 @@ export class ArmarCampoComponent {
   distancias = this.SharedServiceService.getDistancias()
   ubicaciones = this.SharedServiceService.getUbicaciones()
 
-
   public listaPacas: Paca[] = [];
   public listaPacaSelection: PacaSelection[] = [];
 
   constructor(private firebaseService: FirebaseService, 
     private router: Router,
     private SharedServiceService: SharedServiceService) {
-    // Inicializa Firebase cuando se crea este componente
   }
 
   async ngOnInit(): Promise<void> {
-    if (await this.SharedServiceService.checkNewPacas()) {
-      const pacasString = sessionStorage.getItem('pacas');
-      if (pacasString) {
-        this.listaPacas = JSON.parse(pacasString) as Paca[];
-      } else {
-        this.listaPacas = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacasBuild(), 5000); // 5 seconds timeout
-        sessionStorage.setItem('pacas', JSON.stringify(this.listaPacas));
-      }
-    } else {
-      this.listaPacas = await this.SharedServiceService.withTimeout(this.SharedServiceService.pacasBuild(), 5000); // 5 seconds timeout
-      sessionStorage.setItem('pacas', JSON.stringify(this.listaPacas));
-    }
-
+    this.listaPacas = await this.SharedServiceService.setSessionPacas();
     this.obtenerPacas()
   }
 
@@ -138,7 +124,6 @@ export class ArmarCampoComponent {
     this.actualizado = true
     this.actualizadoPopup()
   }
-
 
   showPopup() {
     this.isPopupVisible = true;

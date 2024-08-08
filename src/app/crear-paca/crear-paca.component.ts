@@ -26,15 +26,15 @@ export class CrearPacaComponent {
   public historialCampo: UbicacionCampo[] = []
   public mantenimiento: Mantenimiento[] = [];
 
-
   public distancia: number[] = [];
   public estadoPacas: string[] = [];
   public tipoPacas: string[] = [];
   public ubicacionPacas: string[] = [];
   public sedes: string[] = [];
 
-  constructor(private firebaseService: FirebaseService, private router: Router, private SharedServiceService: SharedServiceService) {
-    // Inicializa Firebase cuando se crea este componente
+  constructor(private firebaseService: FirebaseService, 
+    private router: Router, 
+    private SharedServiceService: SharedServiceService) {
   }
   
   ngOnInit(): void {

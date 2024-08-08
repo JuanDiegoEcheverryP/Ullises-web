@@ -13,6 +13,9 @@ import { EditarArcoComponent } from './editar-arco/editar-arco.component';
 import { AddHistorialPacaComponent } from './add-historial-paca/add-historial-paca.component';
 import { ArmarCampoComponent } from './armar-campo/armar-campo.component';
 import { VerHistorialesPacasSedeComponent } from './ver-historiales-pacas-sede/ver-historiales-pacas-sede.component';
+import { PrestamoArco } from './model/prestamoArco';
+import { PrestamoArcoComponent } from './prestamo-arco/prestamo-arco.component';
+import { VerStagedComponent } from './ver-staged/ver-staged.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
@@ -26,6 +29,8 @@ const routes: Routes = [
   { path: 'add-historial-paca', component: AddHistorialPacaComponent },
   { path: 'armarCampo', component: ArmarCampoComponent },
   { path: 'ver-historial-pacas-sede', component: VerHistorialesPacasSedeComponent },
+  { path: 'prestamo-Arco', component: PrestamoArcoComponent },
+  { path: 'ver-staged', component: VerStagedComponent },
   { path: '**', component: MenuPrincipalComponent }
 ];
 
