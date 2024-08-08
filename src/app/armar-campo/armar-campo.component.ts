@@ -79,11 +79,13 @@ export class ArmarCampoComponent {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la fecha';
       this.showPopup()
+      return
     }
     else if (inputSede == "") {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la sede';
       this.showPopup()
+      return
     }
 
     let filtradas = this.listaPacaSelection.filter(paca => paca.seleccionada);
@@ -92,6 +94,7 @@ export class ArmarCampoComponent {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione las pacas del campo';
       this.showPopup()
+      return
     }
 
     filtradas.forEach(element => {

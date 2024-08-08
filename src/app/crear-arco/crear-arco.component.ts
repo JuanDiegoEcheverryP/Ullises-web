@@ -4,7 +4,7 @@ import { PrestamoArco } from '../model/prestamoArco';
 import { Arco } from '../model/arco';
 import { Mantenimiento } from '../model/mantenimiento';
 import { Router } from '@angular/router';
-
+import {SharedServiceService} from '../shared/shared-service.service'
 
 @Component({
   selector: 'app-crear-arco',
@@ -40,9 +40,8 @@ export class CrearArcoComponent implements OnInit {
   //Registros
   itemName: string = '';
   items: string[] = [];
-  SharedServiceService: any;
 
-  constructor(private firebaseService: FirebaseService, private router: Router) {
+  constructor(private firebaseService: FirebaseService, private router: Router,private SharedServiceService: SharedServiceService) {
     // Inicializa Firebase cuando se crea este componente
   }
   

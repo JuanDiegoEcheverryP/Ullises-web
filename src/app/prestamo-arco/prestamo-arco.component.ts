@@ -75,15 +75,18 @@ export class PrestamoArcoComponent {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la fecha';
       this.showPopup();
+      return
     } else if (inputSede == "") {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la sede';
       this.showPopup();
+      return
     }
     else if (inputTime == "") {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la hora';
       this.showPopup();
+      return
     }
   
     let filtradas = this.listaArcosSelection.filter(arco => arco.seleccionada);
@@ -92,6 +95,7 @@ export class PrestamoArcoComponent {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione los arcos del campo';
       this.showPopup();
+      return
     }
 
     const plainArcos = filtradas.map(item => ({
