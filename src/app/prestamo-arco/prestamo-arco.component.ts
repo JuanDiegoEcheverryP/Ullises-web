@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import {SharedServiceService} from '../shared/shared-service.service'
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Arco } from '../model/arco';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -16,7 +16,7 @@ interface ArcoSelection {
   styleUrls: ['./prestamo-arco.component.css']
 })
 export class PrestamoArcoComponent {
-
+  public code: string = '';
   
   //Popup
   actualizado: boolean = false;
@@ -36,13 +36,56 @@ export class PrestamoArcoComponent {
   constructor(private firebaseService: FirebaseService, 
     private router: Router,
     private SharedServiceService: SharedServiceService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute) {
   }
 
   async ngOnInit(): Promise<void> {
+    
     this.listaArcos = await this.SharedServiceService.setSessionArcos();
     this.obtenerArcos()
+
+    this.route.queryParams.subscribe(params => {
+      this.code = params['code'];
+    });
+    if (this.code) {
+      this.cargarConCodigo()
+    }
   }
+
+  async cargarConCodigo() {
+    const fechaSeleccionada = document.getElementById('fecha') as HTMLInputElement;
+    const inputSede = document.getElementById('sede') as HTMLInputElement;
+    const inputTime = document.getElementById('time') as HTMLInputElement;
+
+    const datos = await this.firebaseService.getData("toStage", this.code);
+    console.log(datos);
+    
+    if (datos !== null) {
+      fechaSeleccionada.value = datos['fecha'];
+      inputSede.value = datos['sede'];
+      inputTime.value = datos['hora'];
+  
+      console.log(datos['arcos']);  // Make sure this is the correct property name and it logs expected values
+      
+      datos['arcos'].forEach((element: any) => {
+        this.listaArcosSelection.forEach(element2 => {
+          if(element.id == element2.arco.id.toString()) {
+            console.log(element.id);
+            element2.seleccionada = true
+            let checkbox = document.getElementById('checkbox-'+element.id) as HTMLInputElement;
+            checkbox.checked = true;
+          }
+        });
+        
+        
+      });
+  } else {
+    this.router.navigate(["/"])
+  }
+  
+}
+
 
   async obtenerArcos() {
     this.listaArcos.sort((a, b) => a.id - b.id);
@@ -65,7 +108,7 @@ export class PrestamoArcoComponent {
       hour12: false
     };
     
-    const colombiaTime = now.toLocaleTimeString('en-US', options);;
+    const colombiaTime = now.toLocaleTimeString('en-US', options);
 
     const fechaSeleccionada = (document.getElementById('fecha') as HTMLInputElement).value;
     const inputSede = (document.getElementById('sede') as HTMLInputElement).value;
@@ -102,9 +145,10 @@ export class PrestamoArcoComponent {
       id: item.arco.id
     }));
   
-    console.log(plainArcos);
-  
-    this.firebaseService.addDocument("toStage", await this.SharedServiceService.crearCodigoHash(), {"actualizado": colombiaTime,"Autor":"DB","tipo":"Prestamo Arcos","sede": inputSede,"fecha": fechaSeleccionada,"hora": inputTime,"arcos": plainArcos})
+    //console.log(plainArcos);
+
+    if (this.code) {
+      this.firebaseService.addDocument("toStage", await this.code, {"actualizado": colombiaTime,"Autor":"DB","tipo":"Prestamo Arcos","sede": inputSede,"fecha": fechaSeleccionada,"hora": inputTime,"arcos": plainArcos})
       .then(() => {
         this.SharedServiceService.updateArcosCode();
         this.actualizado = true;
@@ -113,6 +157,20 @@ export class PrestamoArcoComponent {
       .catch(error => {
         console.error("Error adding document: ", error);
       });
+    }
+    else {
+      this.firebaseService.addDocument("toStage", await this.SharedServiceService.crearCodigoHash(), {"actualizado": colombiaTime,"Autor":"DB","tipo":"Prestamo Arcos","sede": inputSede,"fecha": fechaSeleccionada,"hora": inputTime,"arcos": plainArcos})
+      .then(() => {
+        this.SharedServiceService.updateArcosCode();
+        this.actualizado = true;
+        this.actualizadoPopup();
+      })
+      .catch(error => {
+        console.error("Error adding document: ", error);
+      });
+    }
+  
+    
   }
 
   addArco() {

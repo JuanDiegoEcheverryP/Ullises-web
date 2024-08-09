@@ -25,10 +25,51 @@
             <p>Arcos: -<span *ngFor="let arco of prestamo.arcos">{{ arco.id }} - </span></p>
             <div class="button-group">
                 <button class="btn-aceptar" (click)="enviarActualizacionesPrestamoArcos(prestamo.id)">Aceptar</button>
-                <button class="btn-editar" (click)="openSnackBar('Funcion no disponible')">Editar</button>
+                <button class="btn-editar" (click)="editarReporte(prestamo)">Editar</button>
                 <button class="btn-eliminar" (click)="eliminarStage(prestamo.id)">Eliminar</button>
             </div>
         </div>
         
+    </div>
+    <br>
+    
+</div>
+
+<div class="container">
+    <h1>Listado de Pacas</h1>
+    <div *ngFor="let prestamo of campoPacasList" class="accordion-item">
+        <button class="accordion-title" (click)="togglePrestamo(prestamo)">
+            {{prestamo.actualizado}} | {{ prestamo.tipo }}
+          </button>
+          <div class="accordion-content" *ngIf="prestamo.expanded">
+              <p>Autor: {{ prestamo.autor }}</p>
+              <p>Tipo: {{ prestamo.tipo }}</p>
+              <p>Fecha: {{ prestamo.fecha }}</p>
+              <p>Sede: {{ prestamo.sede }}</p>
+              <p>Pacas: -<span *ngFor="let paca of prestamo.pacas">{{ paca.id }} - </span></p>
+              <table>
+                <tr>
+                    <td>
+                        Id
+                    </td>
+                    <td>
+                        Distancia
+                    </td>
+                    <td>
+                        Ubicacion
+                    </td>
+                </tr>
+                <tr *ngFor="let paca of prestamo.pacas">
+                    <td>{{paca.id}}</td>
+                    <td>{{paca.distancia}}</td>
+                    <td>{{paca.ubicacion}}</td>
+                </tr>
+              </table>
+              <div class="button-group">
+                  <button class="btn-aceptar" (click)="enviarActualizacionesPrestamoPacas(prestamo.id)">Aceptar</button>
+                  <button class="btn-editar" (click)="openSnackBar('Funcion no disponible')">Editar</button>
+                  <button class="btn-eliminar" (click)="eliminarStage(prestamo.id)">Eliminar</button>
+              </div>
+          </div>
     </div>
 </div>

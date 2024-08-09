@@ -71,7 +71,18 @@ export class ArmarCampoComponent {
     
   }
 
-  enviar() {
+  async enviar() {
+    const now = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'America/Bogota',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    
+    const colombiaTime = now.toLocaleTimeString('en-US', options);
+
     const fechaSeleccionada = (document.getElementById('fecha') as HTMLInputElement).value;
     const inputSede = (document.getElementById('sede') as HTMLInputElement).value;
 
@@ -107,13 +118,14 @@ export class ArmarCampoComponent {
       }
     });
     
-    filtradas.forEach(element => {
+    filtradas.forEach(async element => {
       const history = new UbicacionCampo(Number(element.distancia),element.ubicacion,inputSede,fechaSeleccionada);
       element.paca.historialCampo?.push(history)
 
       const jsonString = JSON.stringify(history);
       let newObj = JSON.parse(jsonString);
 
+      /*
       this.firebaseService.addToArrayInDocument("Pacas", element.paca.id.toString(), 'historialCampo', newObj)
       .then(() => {
         console.log('Valor añadido con éxito al arreglo');
@@ -121,7 +133,24 @@ export class ArmarCampoComponent {
       .catch((error) => {
         console.error('Error añadiendo valor al arreglo: ', error);
       })
+      */
     });
+
+    const plainPacas = filtradas.map(item => ({
+      id: item.paca.id,
+      distancia: item.distancia,
+      ubicacion: item.ubicacion
+
+    }));
+    this.firebaseService.addDocument("toStage", await this.SharedServiceService.crearCodigoHash(), {"actualizado": colombiaTime,"Autor":"DB","tipo":"Campo Pacas","sede": inputSede,"fecha": fechaSeleccionada,"pacas": plainPacas})
+      .then(() => {
+        this.SharedServiceService.updateArcosCode();
+        this.actualizado = true;
+        this.actualizadoPopup();
+      })
+      .catch(error => {
+        console.error("Error adding document: ", error);
+      });
     
     this.SharedServiceService.updatePacasCode()
     this.actualizado = true

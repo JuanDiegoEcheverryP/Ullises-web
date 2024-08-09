@@ -5,6 +5,7 @@ import { SharedServiceService } from '../shared/shared-service.service';
 import { Paca } from '../model/paca';
 import { PrestamoArco } from '../model/prestamoArco';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UbicacionCampo } from '../model/ubicacionCampo';
 
 interface PacaTMP {
   idPaca: number;
@@ -25,7 +26,7 @@ interface SedeTmp {
   expanded: boolean;
 }
 
-interface PrestamoArcos {
+interface reportePrestamoArcos {
   id: string;
   actualizado: string;
   autor: string;
@@ -33,15 +34,31 @@ interface PrestamoArcos {
   fecha: string;
   hora: string;
   sede: string;
-  arcos: Arco[];
+  arcos: ArcoTmp[];
   expanded?: boolean;
 }
 
-interface Arco {
+interface ArcoTmp {
   id: number;
   expanded: boolean;
 }
 
+interface reporteUbicacionPacas {
+  id:string,
+  actualizado: string;
+  autor: string;
+  tipo: string;
+  fecha: string;
+  sede: string;
+  pacas: CampoPacasTmp[];
+  expanded?: boolean;
+}
+
+interface CampoPacasTmp {
+  id:number,
+  distancia: number,
+  ubicacion: string
+}
 
 @Component({
   selector: 'app-ver-staged',
@@ -57,11 +74,11 @@ export class VerStagedComponent {
 
   json: any;
   public cargado: boolean = false;
-  public listaPacas: Paca[] = [];
 
   public sedes: SedeTmp[] = [];
 
-  public prestamoArcosList: PrestamoArcos[] = []
+  public prestamoArcosList: reportePrestamoArcos[] = []
+  public campoPacasList: reporteUbicacionPacas[] = []
 
   constructor(
     private firebaseService: FirebaseService,
@@ -71,12 +88,20 @@ export class VerStagedComponent {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.cleanAll()
+    
     let res = await this.sharedServiceService.getStaged();
     console.log(res);
     
     this.filtrarPorTipo(res)
 
-    this.cargado = !this.cargado
+    this.cargado = true
+  }
+
+  cleanAll() {
+    this.cargado = false
+    this.prestamoArcosList = []
+    this.campoPacasList = []
   }
 
   filtrarPorTipo(res:any) {
@@ -84,15 +109,18 @@ export class VerStagedComponent {
       if (element.tipo === "Prestamo Arcos") {
         this.prestamoArcosList.push(element);  // Agrega el elemento a la lista
       }
+      else if(element.tipo === "Campo Pacas") {
+        this.campoPacasList.push(element)
+      }
     });
-    console.log(this.prestamoArcosList);
+    console.log(this.campoPacasList);
   }
 
-  togglePrestamo(prestamo: PrestamoArcos) {
+  togglePrestamo(prestamo: reportePrestamoArcos | reporteUbicacionPacas) {
     prestamo.expanded = !prestamo.expanded;
   }
   
-  toggleArco(prestamo: PrestamoArcos, index: number) {
+  toggleArco(prestamo: reportePrestamoArcos, index: number) {
     const arco = prestamo.arcos[index];
     arco.expanded = !arco.expanded;
   }
@@ -133,11 +161,55 @@ export class VerStagedComponent {
     }
     
   }
+
+  async enviarActualizacionesPrestamoPacas(hash: string): Promise<void> {
+    if (confirm("¿Seguro que quiere aceptar este reporte? Si no está seguro de ello revise nuevamente los detalles")) {
+      try {
+        // Obtener los datos de Firebase usando el hash proporcionado
+        const datos = await this.firebaseService.getData("toStage", hash);
+    
+        if (!datos) {
+          console.log('No se encontraron datos para el hash proporcionado.');
+          return;
+        }
+
+        
+    
+        // Suponiendo que los datos incluyen una lista de préstamos para ser actualizados
+        datos['pacas'].forEach((prestamo: any) => {
+          console.log(prestamo);
+          let history = new UbicacionCampo(Number(prestamo.distancia),prestamo.ubicacion,datos['sede'],datos['fecha']);
+          //let a:PrestamoArco = new PrestamoArco(datos['fecha'],datos['sede'],datos['hora'])
+          console.log(history);
+          const jsonString = JSON.stringify(history);
+          let newObj = JSON.parse(jsonString);
+          console.log(newObj);
+          
+          this.firebaseService.addToArrayInDocument("Pacas",prestamo['id'].toString(),"historialCampo",newObj)
+          this.firebaseService.addDocument("terminados", hash, datos)
+          this.firebaseService.deleteDocumentFromCollection("toStage",hash)
+          this.sharedServiceService.updateArcosCode()
+          
+        });
+    
+        this.actualizadoPopup()
+        this.actualizado = true
+      } catch (error) {
+        console.error('Error al actualizar los préstamos:', error);
+      }
+    }
+    
+  }
+
+  editarReporte(reporte: reportePrestamoArcos | reporteUbicacionPacas) {
+    this.router.navigate(['/prestamo-Arco'], { queryParams: { code: reporte.id } });
+    
+  }
   
   eliminarStage(hash: string) {
     if (confirm("¿Seguro que quiere eliminar este reporte?")) {
       this.firebaseService.deleteDocumentFromCollection("toStage",hash)
-      location.reload();
+      this.ngOnInit()
     }
   }
   
