@@ -28,11 +28,11 @@
         <li *ngFor="let pacaSelection of listaPacaSelection" [class.seleccionada]="pacaSelection.seleccionada">
             <input type="checkbox" id="checkbox-{{ pacaSelection.paca.id }}" (click)="toggleSeleccion(pacaSelection)" />
             <label for="checkbox-{{ pacaSelection.paca.id }}">#{{ pacaSelection.paca.id }}</label>
-            <select id="distancia" (change)="updateDistancia(pacaSelection, $event)" *ngIf="pacaSelection.seleccionada">
+            <select id="distancia-{{pacaSelection.paca.id}}" (change)="updateDistancia(pacaSelection, $event)" *ngIf="pacaSelection.seleccionada">
                 <option value="" disabled selected>Distancia</option>
                 <option *ngFor="let distancia of distancias" [value]="distancia">{{ distancia }}</option>
             </select>
-            <select id="ubicacion" (change)="updateUbicacion(pacaSelection, $event)" *ngIf="pacaSelection.seleccionada">
+            <select id="ubicacion-{{pacaSelection.paca.id}}" (change)="updateUbicacion(pacaSelection, $event)" *ngIf="pacaSelection.seleccionada">
                 <option value="" disabled selected>Ubicacion</option>
                 <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">{{ ubicacion }}</option>
             </select>

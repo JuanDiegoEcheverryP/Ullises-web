@@ -202,7 +202,15 @@ export class VerStagedComponent {
   }
 
   editarReporte(reporte: reportePrestamoArcos | reporteUbicacionPacas) {
-    this.router.navigate(['/prestamo-Arco'], { queryParams: { code: reporte.id } });
+    if (reporte.tipo == 'Prestamo Arcos') {
+      this.router.navigate(['/prestamo-Arco'], { queryParams: { code: reporte.id } });
+    }
+    else if (reporte.tipo == 'Campo Pacas') {
+      this.router.navigate(['/armarCampo'], { queryParams: { code: reporte.id } });
+    }
+    
+    
+    //
     
   }
   
