@@ -29,8 +29,8 @@
                             <td>{{ paca.distancia }}</td>
                             <td>{{ paca.ubicacion }}</td>
                             <td>
-                                <button class="btn-editar">Editar</button>
-                                <button class="btn-eliminar">Eliminar</button>
+                                <button class="btn-editar" (click)="$event.stopPropagation(); openSnackBar('Funcion no disponible')">Editar</button>
+                                <button class="btn-eliminar" (click)="$event.stopPropagation(); openSnackBar('Funcion no disponible')">Eliminar</button>
                             </td>
                         </tr>
                     </tbody>

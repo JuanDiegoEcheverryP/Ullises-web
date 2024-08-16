@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="loader-container" *ngIf="!cargado">
+    <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
+</div>
+
+<!-- ver-historiales-pacas-sede.component.html -->
+<div id="contenido">
+    <h2>Historial de arcos por Sede y Fecha</h2>
+
+    <div class="sede" *ngFor="let sede of sedes">
+        <p (click)="toggleSede(sede)" class="sede-title">{{ sede.nombre }}</p>
+        
+        <div *ngIf="sede.expanded" class="fecha-container">
+            <div *ngFor="let fecha of sede.fechas" (click)="toggleFecha(fecha)">
+                <p class="fecha-title">{{ fecha.fecha }}</p>
+                
+                <table [ngClass]="{'show': fecha.expanded}" class="paca-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Hora</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let arco of fecha.pacas">
+                            <td>{{ arco.idPaca }}</td>
+                            <td>{{ arco.hora }}</td>
+                            <td>
+                                <button class="btn-editar" (click)="$event.stopPropagation(); openSnackBar('Funcion no disponible')">Editar</button>
+                                <button class="btn-eliminar" (click)="$event.stopPropagation(); openSnackBar('Funcion no disponible')">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

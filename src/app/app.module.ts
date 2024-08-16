@@ -24,6 +24,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { VerStagedComponent } from './ver-staged/ver-staged.component';
 import { PromptComponent } from './components/prompt/prompt.component';
+import { VerPrestamosArcosComponent } from './ver-prestamos-arcos/ver-prestamos-arcos.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PromptComponent } from './components/prompt/prompt.component';
     MapToIterablePipe,
     PrestamoArcoComponent,
     VerStagedComponent,
-    PromptComponent
+    PromptComponent,
+    VerPrestamosArcosComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

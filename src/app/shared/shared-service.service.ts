@@ -60,9 +60,9 @@ export class SharedServiceService {
         m.empleadoId,
         m.concepto
       )),
-      element.historial.map((h: { fecha: string; sedeId: string; hora:string }) => new PrestamoArco(
+      element.historial.map((h: { fecha: string; sede: string; hora:string }) => new PrestamoArco(
         h.fecha, 
-        h.sedeId,
+        h.sede,
         h.hora
       ))
     ));

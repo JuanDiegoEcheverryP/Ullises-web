@@ -3,55 +3,173 @@
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    padding-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-}
-.container {
-    text-align: center;
-}
-.button-container {
     display: flex;
-    flex-direction: column; /* Cambia la dirección del flex a columna */
-    gap: 20px; /* Espacio entre los botones */
-    margin-top: 40px;
-}
-.btn {
+    position: relative;
+  }
+
+  .btnTemp {
+    background-color: #ffa72c;
+  }
+
+  .sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow: none;
+    transition: width 0.3s;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .sidebar.collapsed {
+    width: 60px;
+    padding: 20px 10px;
+  }
+
+  .menu-item {
+    margin: 5px 0;
+  }
+
+  .menu-item * {
+    color: #FFF;
+    margin: 2px 0;
+  }
+
+  .menu-title, .btn, .btn-warning {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 5px;
+    border-color: #007bff00;
+    transition: background-color 0.3s;
+  }
+
+  .sidebar.collapsed .menu-title, .sidebar.collapsed .btn, .sidebar.collapsed .btn-warning {
+    justify-content: center;
+    padding: 10px 10px;
+    text-align: center;
+  }
+
+  .sidebar.collapsed .menu-title span, .sidebar.collapsed .btn span, .sidebar.collapsed .btn-warning span {
+    display: none; /* Oculta el texto cuando está colapsado */
+  }
+
+  .menu-title {
     background-color: #007bff;
     color: white;
-    border: none;
-    padding: 20px; /* Ajusta el padding para mantener el tamaño uniforme */
-    width: 200px; /* Tamaño fijo para todos los botones */
-    font-size: 20px;
     cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-}
-.btn:hover {
-    background-color: #0056b3;
-}
+  }
 
-.btnTemp {
-    background-color: #ffa200 !important;
-    color: white;
-    border: none;
-    padding: 20px; /* Ajusta el padding para mantener el tamaño uniforme */
-    width: 200px; /* Tamaño fijo para todos los botones */
-    font-size: 20px;
+  .menu-title:hover, .btn-sub:hover {
+    background-color: #0056b3; /* Un tono más oscuro al ser hover */
+    transition: background-color 0.2s;
+  }
+
+  .menu-title::after {
+    content: '▼';
+    font-size: 12px;
+  }
+
+  .menu-title.collapsed::after {
+    content: '►';
+  }
+
+  .btn-sub {
+    background-color: #006adc;
+    width: 90%;
+    padding-left: 30px;
     cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-}
-.btnTemp:hover {
-    background-color: #ff8400 !important;
-}
+  }
 
-button {
-    margin: 5px;
-}
+  .btn-toggle {
+    background: #dadada;
+    border: none;
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    font-weight: bold; /* Texto en negrita */
+    padding: 0 10px;
+  }
 
-hr {
-    margin: 0 30px;
-}
+  .btn-toggle {
+    margin-right: 100px; /* Espacio entre el texto y la flecha */
+  }
+
+  .btn-toggle::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-color: transparent transparent transparent #333; /* Flecha en negro */
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.collapsed .btn-toggle::after {
+    transform: rotate(0deg); /* Gira la flecha para apuntar a la derecha */
+  }
+
+  .btn-warning {
+    background-color: #ffca2c;
+    color: black;
+    font-weight: bold;
+  }
+
+  .menu-title:focus, .btn-sub:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.5);
+    margin-bottom: 5px;
+  }
+
+  .menu-title:active, .btn-sub:active {
+    background-color: #004495; /* Un tono aún más oscuro para el estado activo */
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards; /* Asegúrate de que la animación se mantenga en el estado final */
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+    flex-grow: 1;
+    z-index: 1; /* La información del usuario estará debajo del menú */
+    margin-left: 75px; /* Espacio para la barra lateral */
+  }
+
+  .profile-pic {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .profile-age,
+  .profile-role {
+    font-size: 18px;
+    color: #666;
+  }

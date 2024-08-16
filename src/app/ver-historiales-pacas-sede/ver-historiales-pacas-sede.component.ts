@@ -4,6 +4,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { SharedServiceService } from '../shared/shared-service.service';
 import { Paca } from '../model/paca';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface PacaTMP {
   idPaca: number;
@@ -39,7 +40,8 @@ export class VerHistorialesPacasSedeComponent implements OnInit {
   constructor(
     private firebaseService: FirebaseService,
     private router: Router,
-    private sharedServiceService: SharedServiceService
+    private sharedServiceService: SharedServiceService,
+    private snackBar: MatSnackBar
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -139,6 +141,12 @@ toggleFecha(fecha: Fecha) {
   fecha.expanded = !fecha.expanded; // Alterna la propiedad expanded
 }
 
-  
+openSnackBar(message: string, action: string = 'Cerrar') {
+  this.snackBar.open(message, action, {
+    duration: 3000, // duración del snackbar en milisegundos
+    horizontalPosition: 'center',
+    verticalPosition: 'bottom',
+  });
+}
   
 }

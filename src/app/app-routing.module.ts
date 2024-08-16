@@ -16,6 +16,7 @@ import { VerHistorialesPacasSedeComponent } from './ver-historiales-pacas-sede/v
 import { PrestamoArco } from './model/prestamoArco';
 import { PrestamoArcoComponent } from './prestamo-arco/prestamo-arco.component';
 import { VerStagedComponent } from './ver-staged/ver-staged.component';
+import { VerPrestamosArcosComponent } from './ver-prestamos-arcos/ver-prestamos-arcos.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'ver-historial-pacas-sede', component: VerHistorialesPacasSedeComponent },
   { path: 'prestamo-Arco', component: PrestamoArcoComponent },
   { path: 'ver-staged', component: VerStagedComponent },
+  { path: 'ver-historial-arcos', component: VerPrestamosArcosComponent },
   { path: '**', component: MenuPrincipalComponent }
 ];
 

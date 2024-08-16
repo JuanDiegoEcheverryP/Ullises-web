@@ -1,27 +1,38 @@
 <app-navbar></app-navbar>
 <div class="body">
-    <div class="container">
-        <div class="button-container">
-          <div>
-            <h2>Registro de datos</h2>
-            <button (click)="navigateTo('/crearArco')" class="btn">Crear arco</button>
-            <button (click)="navigateTo('/crearPaca')" class="btn">Crear pacas</button>
-            <button (click)="navigateTo('/armarCampo')" class="btn">Armar campo</button>
-            <button (click)="navigateTo('/prestamo-Arco')" class="btn">Prestamo arcos</button>
-          </div>
-          <div>
-            <hr>
-            <h2>Visualizacion de datos</h2>
-            <button (click)="navigateTo('/verArcos')" class="btn">Ver arcos</button>
-            <button (click)="navigateTo('/verPacas')" class="btn">Ver pacas</button>
-            <button (click)="navigateTo('/ver-historial-pacas-sede')" class="btn">Ver fechas</button>
-            <button (click)="navigateTo('/ver-staged')" class="btn">Staged</button>
-          </div>
-          <hr>
-          <div>
-            <button (click)="navigateTo('/arquitectura')" class="btn btnTemp">Diagramas</button>
-          </div>
-          <button (click)="forceActualization()">Forzar actualizacion de memoria local</button>
-        </div>
+  <div class="sidebar" [ngClass]="{'collapsed': isSidebarCollapsed}">
+    <button class="btn-toggle" (click)="isSidebarCollapsed = !isSidebarCollapsed">Menú <p style="color: #dadada;">*</p> </button>
+    <div *ngIf="!isSidebarCollapsed" class="menu-item">
+      <button class="menu-title" (click)="toggleMenu('registro')" [ngClass]="{'collapsed': activeMenu !== 'registro'}">
+        <span>Registro de Datos</span>
+      </button>
+      <div *ngIf="activeMenu === 'registro'">
+        <button (click)="navigateTo('/crearArco')" class="btn btn-sub fade-in"><span>Crear arco</span></button>
+        <button (click)="navigateTo('/crearPaca')" class="btn btn-sub fade-in"><span>Crear pacas</span></button>
+        <button (click)="navigateTo('/armarCampo')" class="btn btn-sub fade-in"><span>Armar campo</span></button>
+        <button (click)="navigateTo('/prestamo-Arco')" class="btn btn-sub fade-in"><span>Prestamo arcos</span></button>
       </div>
+    </div>
+    <div *ngIf="!isSidebarCollapsed" class="menu-item">
+      <button class="menu-title" (click)="toggleMenu('visualizacion')" [ngClass]="{'collapsed': activeMenu !== 'visualizacion'}">
+        <span>Visualización de Datos</span>
+      </button>
+      <div *ngIf="activeMenu === 'visualizacion'">
+        <button (click)="navigateTo('/verArcos')" class="btn btn-sub fade-in"><span>Ver arcos</span></button>
+        <button (click)="navigateTo('/verPacas')" class="btn btn-sub fade-in"><span>Ver pacas</span></button>
+        <button (click)="navigateTo('/ver-historial-pacas-sede')" class="btn btn-sub fade-in"><span>Ver pacas fechas</span></button>
+        <button (click)="navigateTo('/ver-historial-arcos')" class="btn btn-sub fade-in"><span>Ver arcos fechas</span></button>
+      </div>
+    </div>
+    <button *ngIf="!isSidebarCollapsed" (click)="navigateTo('/arquitectura')" class="btn btnTemp">Diagramas</button>
+  </div>
+
+  <!-- Perfil de la Persona -->
+  <div class="profile">
+    <img src="https://via.placeholder.com/150" alt="Foto de Perfil" class="profile-pic">
+    <h2 class="profile-name">Nombre de la persona</h2>
+    <p class="profile-age">Edad: XX años</p>
+    <p class="profile-role">Rol: Administrador</p>
+  </div>
 </div>
+<button (click)="forceActualization()" class="btn btn-warning"><span>Forzar actualización de memoria local</span></button>
