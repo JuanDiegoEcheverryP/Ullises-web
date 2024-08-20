@@ -9,7 +9,7 @@ import {SharedServiceService} from '../shared/shared-service.service'
 })
 export class MenuPrincipalComponent {
   public isMenuOpen: boolean = false;
-  public isSidebarCollapsed = false;
+  public isSidebarCollapsed = true;
   public activeMenu: string | null = null;
 
   constructor(private router: Router,private SharedServiceService: SharedServiceService) { }

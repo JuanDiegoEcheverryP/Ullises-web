@@ -26,6 +26,8 @@ import { VerStagedComponent } from './ver-staged/ver-staged.component';
 import { PromptComponent } from './components/prompt/prompt.component';
 import { VerPrestamosArcosComponent } from './ver-prestamos-arcos/ver-prestamos-arcos.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { MantenimientoArcoComponent } from './mantenimiento-arco/mantenimiento-arco.component';
+import { MantenimientoPacaComponent } from './mantenimiento-paca/mantenimiento-paca.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     VerStagedComponent,
     PromptComponent,
     VerPrestamosArcosComponent,
-    SideBarComponent
+    SideBarComponent,
+    MantenimientoArcoComponent,
+    MantenimientoPacaComponent
   ],
   imports: [
     BrowserModule,

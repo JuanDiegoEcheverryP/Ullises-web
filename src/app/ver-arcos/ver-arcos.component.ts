@@ -78,6 +78,11 @@ export class VerArcosComponent {
     this.router.navigate([`editar-arco`]);
   }
 
+  addMantenimientoArco(id:number) {
+    sessionStorage.setItem('arcoId', id.toString());
+    this.router.navigate([`mantenimiento-arco`]);
+  }
+
   cleanAll() {
     this.listaArcosStaged = []
   }

@@ -1,3 +1,15 @@
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#load {
+    width: 100px;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;

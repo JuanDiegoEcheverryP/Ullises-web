@@ -17,6 +17,8 @@ import { PrestamoArco } from './model/prestamoArco';
 import { PrestamoArcoComponent } from './prestamo-arco/prestamo-arco.component';
 import { VerStagedComponent } from './ver-staged/ver-staged.component';
 import { VerPrestamosArcosComponent } from './ver-prestamos-arcos/ver-prestamos-arcos.component';
+import { MantenimientoArcoComponent } from './mantenimiento-arco/mantenimiento-arco.component';
+import { MantenimientoPacaComponent } from './mantenimiento-paca/mantenimiento-paca.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: 'prestamo-Arco', component: PrestamoArcoComponent },
   { path: 'ver-staged', component: VerStagedComponent },
   { path: 'ver-historial-arcos', component: VerPrestamosArcosComponent },
+  { path: 'mantenimiento-arco', component: MantenimientoArcoComponent },
+  { path: 'mantenimiento-paca', component: MantenimientoPacaComponent },
   { path: '**', component: MenuPrincipalComponent }
 ];
 

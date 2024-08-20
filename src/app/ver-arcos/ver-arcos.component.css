@@ -143,6 +143,22 @@
   .btn-eliminar:hover {
     background-color: #f44336a1; /* Color de fondo rojo oscuro al pasar el ratón */
   }
+
+.btn-add {
+  background-color: #f4b536; /* Color de fondo rojo */
+    color: white; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 16px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como elemento en línea */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s; /* Transición de color de fondo */
+}
+.btn-add:hover {
+  background-color: #f4ab00; /* Color de fondo rojo oscuro al pasar el ratón */
+}
   
   .loader-container {
     position: fixed; /* Posiciona el contenedor de carga en relación a la ventana del navegador */

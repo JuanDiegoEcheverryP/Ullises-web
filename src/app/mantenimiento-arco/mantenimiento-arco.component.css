@@ -9,6 +9,10 @@
 #load {
     width: 100px;
 }
+#concepto {
+    width:100%;
+    height: 25px;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -42,7 +46,10 @@ form {
 .form-group {
     margin-bottom: 15px;
     padding: 20px;
+    text-align: center;
 }
+
+
 
 label {
     display: block;
@@ -51,14 +58,23 @@ label {
 }
 
 input[type="date"],
+input[type="time"],
+input[type="number"],  /* Agregar input de tipo texto */
 select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
+    padding: 10px;  /* Asegurar que el padding sea uniforme */
+    border: 1px solid #ccc;  /* Estilo de borde consistente */
+    border-radius: 4px;  /* Bordes redondeados */
+    box-sizing: border-box;  /* Ajuste de caja para evitar problemas de dimensionamiento */
+    font-size: 16px;  /* Tamaño de fuente uniforme */
+    margin-bottom: 10px;  /* Margen uniforme debajo de cada input */
 }
+
+/* Asegurarse que todos los input tengan el mismo margen inferior */
+input {
+    margin-bottom: 10px;
+}
+
 
 button {
     width: 100%;
@@ -203,4 +219,31 @@ body {
 
 .send-btn {
     width: 100px;
+}
+
+.input-button-group {
+    display: flex;  /* Alinear los elementos horizontalmente */
+    align-items: center;  /* Alineación vertical al centro */
+    margin-bottom: 10px;  /* Espacio debajo del grupo */
+}
+
+.input-button-group input[type="text"] {
+    flex-grow: 1;  /* Ocupar el espacio disponible */
+    margin-right: 10px;  /* Espacio entre el input y el botón */
+}
+
+.add-btn {
+    width: 50px;
+    background-color: #28a745;  /* Color verde para el botón Agregar */
+    color: white;
+    padding: 10px 15px;  /* Ajuste de padding para hacer el botón más grande */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;  /* Transición suave del color */
+    margin-bottom: 7px;
+}
+
+.add-btn:hover {
+    background-color: #218838;  /* Color más oscuro al pasar el ratón */
 }

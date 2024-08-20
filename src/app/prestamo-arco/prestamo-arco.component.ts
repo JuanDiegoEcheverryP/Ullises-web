@@ -99,6 +99,9 @@ export class PrestamoArcoComponent {
   }
 
   async enviar() {
+    const enviarButton = document.getElementById('enviarButton') as HTMLButtonElement;
+    enviarButton.disabled = true;
+
     const now = new Date();
     const options: Intl.DateTimeFormatOptions = {
       timeZone: 'America/Bogota',
@@ -118,17 +121,20 @@ export class PrestamoArcoComponent {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la fecha';
       this.showPopup();
+      enviarButton.disabled = false;
       return
     } else if (inputSede == "") {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la sede';
       this.showPopup();
+      enviarButton.disabled = false;
       return
     }
     else if (inputTime == "") {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione la hora';
       this.showPopup();
+      enviarButton.disabled = false;
       return
     }
   
@@ -138,6 +144,7 @@ export class PrestamoArcoComponent {
       this.popupTitle = 'Información faltante';
       this.popupMessage = 'Seleccione los arcos del campo';
       this.showPopup();
+      enviarButton.disabled = false;
       return
     }
 
@@ -155,6 +162,7 @@ export class PrestamoArcoComponent {
         this.actualizadoPopup();
       })
       .catch(error => {
+        enviarButton.disabled = false;
         console.error("Error adding document: ", error);
       });
     }
@@ -166,6 +174,7 @@ export class PrestamoArcoComponent {
         this.actualizadoPopup();
       })
       .catch(error => {
+        enviarButton.disabled = false;
         console.error("Error adding document: ", error);
       });
     }

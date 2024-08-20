@@ -68,14 +68,11 @@
         <span class="arrow">{{ showMantenimiento[i] ? '▼' : '▶' }}</span>
         </h4>
       <ul *ngIf="showMantenimiento[i]">
+        <button class="btn-add" (click)="addMantenimientoArco(arco.id)">Agregar mantenimiento</button>
         <li *ngFor="let m of arco.mantenimiento">
             <p><strong>Fecha: </strong>{{ m.fecha }}</p>
-            <p><strong>Responsable: </strong>{{ m.empleadoId }}</p>
+            <!--<p><strong>Responsable: </strong>{{ m.empleadoId }}</p>-->
             <p><strong>Concepto: </strong>{{ m.concepto }}</p>
-            <div class="button-container">
-                <button class="btn-editar">Editar</button>
-                <button class="btn-eliminar">Eliminar</button>
-            </div>
         </li>
         </ul>
     </div>

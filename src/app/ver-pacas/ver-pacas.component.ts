@@ -56,6 +56,11 @@ export class VerPacasComponent {
     
   }
 
+  addMantenimientoPaca(id:number) {
+    sessionStorage.setItem('pacaId', id.toString());
+    this.router.navigate([`mantenimiento-paca`]);
+  }
+
   toggleSection(index: number, section: string): void {
     if (section === 'mantenimiento') {
       this.showMantenimiento[index] = !this.showMantenimiento[index];

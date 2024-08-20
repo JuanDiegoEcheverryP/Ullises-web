@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<div class="loader-container" *ngIf="!cargado">
+    <img src="../../assets/load.gif" *ngIf="!cargado" id="load">
+</div>
+
+<app-alert
+[show]="isPopupVisible"
+[title]="popupTitle"
+[message]="popupMessage"
+(close)="onPopupClose()"
+></app-alert>
+
+
+
+<div class="form-group">
+    <h2>Mantenimiento de paca {{idPaca}}</h2>
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" required>
+    <h2>concepto</h2>
+    <input id= "concepto" type="text" required placeholder="Ingrese aqui el concepto de mantenimiento">
+</div>
+
+<div class="form-group">
+    <button class="send-btn" id="enviarButton" (click)="enviar()">Enviar</button>
+</div>
