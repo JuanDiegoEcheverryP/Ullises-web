@@ -12,6 +12,11 @@
     background-color: #ffa72c;
   }
 
+  .btnStaged {
+    background-color: #0039d6;
+    color: #FFF;
+  }
+
   .sidebar {
     width: 250px;
     background-color: #ffffff;

@@ -113,15 +113,19 @@ export class VerPrestamosArcosComponent {
       });
     });
   
-    // Ordenar los arcos por hora y secundario por id
+    // Ordenar las fechas y las pacas
     this.sedes.forEach(sede => {
+      sede.fechas?.sort((a, b) => {
+        const fechaA = new Date(a.fecha);
+        const fechaB = new Date(b.fecha);
+        return fechaA.getTime() - fechaB.getTime();
+      });
+  
       sede.fechas?.forEach(fecha => {
         fecha.pacas.sort((a, b) => {
-          // Ordenar por hora
           if (a.hora !== b.hora) {
             return a.hora.localeCompare(b.hora);
           }
-          // Si las horas son iguales, ordenar por idPaca
           return a.idPaca - b.idPaca;
         });
       });
@@ -130,6 +134,7 @@ export class VerPrestamosArcosComponent {
     this.cargado = true;
     console.log(this.sedes);
   }
+  
 
   eliminarArco(_t34: ArcoTMP) {
     throw new Error('Method not implemented.');

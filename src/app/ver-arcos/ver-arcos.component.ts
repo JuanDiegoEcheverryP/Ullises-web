@@ -101,7 +101,6 @@ export class VerArcosComponent {
     this.listaArcos.forEach(element => {
       if ((element.tipo == tipoArco || tipoArco == '') &&
       (element.calidad == calidadArco || calidadArco == '') &&
-      (element.estado == estadoArco || estadoArco == '') &&
       (element.libraje?.toString() == librajeArco || librajeArco == '') &&
       (element.mano == manoArco || manoArco == '') 
       

@@ -24,7 +24,6 @@ export class SharedServiceService {
       let bow = new Arco(
         data['id'],
         data['calidad'] || undefined,
-        data['estado'] || undefined,
         data['libraje'] || undefined,
         data['tipo'] || undefined,
         data['mano'] || undefined,
@@ -47,7 +46,6 @@ export class SharedServiceService {
     const arcos: Arco[] = tmp.map(element => new Arco(
       element.id,
       element.calidad,
-      element.estado,
       element.libraje,
       element.tipo,
       element.mano,
@@ -77,7 +75,6 @@ export class SharedServiceService {
       let paca = new Paca(
         data['id'],
         data['tipo'],
-        data['ubicacion'] || undefined,
         data['sede'] || undefined,
         data['estado'] || undefined,
         data['mantenimiento'] || undefined,
@@ -95,7 +92,6 @@ export class SharedServiceService {
     const pacas: Paca[] = tmp.map(element => new Paca(
       element.id,
       element.tipo,
-      element.ubicacion,
       element.sede,
       element.estado,
       element.mantenimiento.map((m: { fecha: string; empleadoId: number; concepto: string; }) => new Mantenimiento(

@@ -56,10 +56,6 @@ export class CrearArcoComponent implements OnInit {
             this.calidadArcos.push(element)
           });
   
-          this.json.Estado.forEach((element: any) => {
-            this.estadoArcos.push(element)
-          });
-  
           this.json.Libraje.forEach((element: any) => {
             this.librajeArcos.push(element)
           });
@@ -89,14 +85,13 @@ export class CrearArcoComponent implements OnInit {
     const libraje = Number((document.getElementById('libraje') as HTMLSelectElement).value);
     const mano = (document.getElementById('mano') as HTMLSelectElement).value;
     const calidad = (document.getElementById('calidad') as HTMLSelectElement).value;
-    const estado = (document.getElementById('estado') as HTMLSelectElement).value;
     const cuerda = (document.getElementById('cuerda') as HTMLSelectElement).value;
     const rest = (document.getElementById('rest') as HTMLSelectElement).value;
     const palas = (document.getElementById('palas') as HTMLSelectElement).value;
     const pintura = (document.getElementById('pintura') as HTMLSelectElement).value;
 
     //meter a model
-    let newArco = new Arco(numero,calidad,estado,libraje,tipoArco,mano,cuerda,rest,palas,pintura,this.mantenimiento,this.historial)
+    let newArco = new Arco(numero,calidad,libraje,tipoArco,mano,cuerda,rest,palas,pintura,this.mantenimiento,this.historial)
 
     const jsonString = JSON.stringify(newArco);
 

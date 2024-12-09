@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
-import { PrestamoArco } from '../model/prestamoArco';
-import { Arco } from '../model/arco';
 import { Mantenimiento } from '../model/mantenimiento';
 import { Router } from '@angular/router';
 import { Paca } from '../model/paca';
@@ -53,9 +51,6 @@ export class CrearPacaComponent {
           this.json.Tamaño.forEach((element: any) => {
             this.tipoPacas.push(element)
           });
-          this.json.Ubicacion.forEach((element: any) => {
-            this.ubicacionPacas.push(element)
-          });
         }
         else {
           alert("Error de base de datos")
@@ -83,11 +78,10 @@ export class CrearPacaComponent {
   async agregarRegistro(): Promise<void> {
     const numero = Number((document.getElementById('numero') as HTMLSelectElement).value);
     const tipoPaca = (document.getElementById('tipo') as HTMLSelectElement).value;
-    const ubicacion = (document.getElementById('ubicacion') as HTMLSelectElement).value;
     const estado = (document.getElementById('estado') as HTMLSelectElement).value;
     const sede = (document.getElementById('sede') as HTMLSelectElement).value;
     
-    let newPaca = new Paca(numero,tipoPaca,ubicacion,sede,estado,this.mantenimiento,this.historialCampo)
+    let newPaca = new Paca(numero,tipoPaca,sede,estado,this.mantenimiento,this.historialCampo)
 
     const jsonString = JSON.stringify(newPaca);
 

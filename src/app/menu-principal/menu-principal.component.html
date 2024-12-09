@@ -3,28 +3,41 @@
   <div class="sidebar" [ngClass]="{'collapsed': isSidebarCollapsed}">
     <button class="btn-toggle" (click)="isSidebarCollapsed = !isSidebarCollapsed">Menú <p style="color: #dadada;">*</p> </button>
     <div *ngIf="!isSidebarCollapsed" class="menu-item">
-      <button class="menu-title" (click)="toggleMenu('registro')" [ngClass]="{'collapsed': activeMenu !== 'registro'}">
-        <span>Registro de Datos</span>
+      <button class="menu-title" (click)="toggleMenu('cliente')" [ngClass]="{'collapsed': activeMenu !== 'visualizacion'}">
+        <span>Clientes</span>
       </button>
-      <div *ngIf="activeMenu === 'registro'">
-        <button (click)="navigateTo('/crearArco')" class="btn btn-sub fade-in"><span>Crear arco</span></button>
-        <button (click)="navigateTo('/crearPaca')" class="btn btn-sub fade-in"><span>Crear pacas</span></button>
-        <button (click)="navigateTo('/armarCampo')" class="btn btn-sub fade-in"><span>Armar campo</span></button>
-        <button (click)="navigateTo('/prestamo-Arco')" class="btn btn-sub fade-in"><span>Prestamo arcos</span></button>
+      <div *ngIf="activeMenu === 'cliente'">
+        <button class="btn btn-sub fade-in"><span>Crear cliente</span></button>
+        <button class="btn btn-sub fade-in"><span>Crear clase</span></button>
+        <button class="btn btn-sub fade-in"><span>Ver clientes</span></button>
+        <button class="btn btn-sub fade-in"><span>Ver clases</span></button>
       </div>
     </div>
     <div *ngIf="!isSidebarCollapsed" class="menu-item">
-      <button class="menu-title" (click)="toggleMenu('visualizacion')" [ngClass]="{'collapsed': activeMenu !== 'visualizacion'}">
-        <span>Visualización de Datos</span>
+      <button class="menu-title" (click)="toggleMenu('arco')" [ngClass]="{'collapsed': activeMenu !== 'registro'}">
+        <span>Arcos</span>
       </button>
-      <div *ngIf="activeMenu === 'visualizacion'">
+      <div *ngIf="activeMenu === 'arco'">
+        <button (click)="navigateTo('/crearArco')" class="btn btn-sub fade-in"><span>Crear arco</span></button>
         <button (click)="navigateTo('/verArcos')" class="btn btn-sub fade-in"><span>Ver arcos</span></button>
-        <button (click)="navigateTo('/verPacas')" class="btn btn-sub fade-in"><span>Ver pacas</span></button>
-        <button (click)="navigateTo('/ver-historial-pacas-sede')" class="btn btn-sub fade-in"><span>Ver pacas fechas</span></button>
         <button (click)="navigateTo('/ver-historial-arcos')" class="btn btn-sub fade-in"><span>Ver arcos fechas</span></button>
-        <button (click)="navigateTo('/ver-staged')" class="btn btn-sub fade-in">Staged</button>
+        <button (click)="navigateTo('/prestamo-Arco')" class="btn btn-sub fade-in"><span>Agregar prestamo arcos</span></button>
       </div>
     </div>
+    <div *ngIf="!isSidebarCollapsed" class="menu-item">
+      <button class="menu-title" (click)="toggleMenu('paca')" [ngClass]="{'collapsed': activeMenu !== 'visualizacion'}">
+        <span>Pacas</span>
+      </button>
+      <div *ngIf="activeMenu === 'paca'">
+        <button (click)="navigateTo('/crearPaca')" class="btn btn-sub fade-in"><span>Crear pacas</span></button>
+        <button (click)="navigateTo('/verPacas')" class="btn btn-sub fade-in"><span>Ver pacas</span></button>
+        <button (click)="navigateTo('/ver-historial-pacas-sede')" class="btn btn-sub fade-in"><span>Ver pacas fechas</span></button>
+        <button (click)="navigateTo('/armarCampo')" class="btn btn-sub fade-in"><span>Armar campo</span></button>
+      </div>
+    </div>
+    
+    <button *ngIf="!isSidebarCollapsed" (click)="navigateTo('/ver-staged')" class="btn btnStaged">Por validar</button>
+    <br>
     <button *ngIf="!isSidebarCollapsed" (click)="navigateTo('/arquitectura')" class="btn btnTemp">Diagramas</button>
   </div>
 
@@ -39,6 +52,25 @@
     <div style="width: 90%; text-align: left">
       <p><b>Notas de desarrollo</b></p>
       <p>Dado que la app-web se encuentra en desarrollo, es posible que existan errores, por lo tanto ten en cuenta esto!. Adicionalmente, la interfáz va a estar cambiando constantemente</p>
+      <p><b>V0.7.3</b></p>
+      <ul>
+        <li><p>Se redistribuyen los botones para que sea màs coherente de acuerdo a las areas de trabajo, ahora todas las funciones relacionadas con arcos, estan en arcos, y todas las relacionadas con pacas, en pacas </p>
+        </li>
+      </ul>
+      <ul>
+        <li><p>Se agregan botones para manejo de clientes, sin embargo aun no tiene funcionalidad</p>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <p>Se eliminan campos innesesarios en arcos y pacas, por lo que se simplicica el registro de nuevo inventario</p>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <p>Se actualiza un error en la visualizacion de las fechas de los arcos ya que se mostraban en desorden/p>
+        </li>
+      </ul>
       <p><b>V0.7.2</b></p>
       <ul>
         <li><p>Se agrega opcion de mantenimiento para arcos y pacas </p>

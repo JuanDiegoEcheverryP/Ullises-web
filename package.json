@@ -25,6 +25,7 @@
     "firebase": "^10.12.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "ullises-web": "file:",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

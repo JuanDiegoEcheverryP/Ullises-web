@@ -28,7 +28,6 @@ export class EditarArcoComponent implements OnInit {
 
   //Opciones
   public calidadArcos: string[] = [];
-  public estadoArcos: string[] = [];
   public librajeArcos: number[] = [];
   public manoArcos: string[] = [];
   public tipoArcos: string[] = [];
@@ -78,10 +77,6 @@ export class EditarArcoComponent implements OnInit {
         if(this.json) {
           this.json.Calidad.forEach((element: any) => {
             this.calidadArcos.push(element)
-          });
-  
-          this.json.Estado.forEach((element: any) => {
-            this.estadoArcos.push(element)
           });
   
           this.json.Libraje.forEach((element: any) => {
@@ -160,7 +155,6 @@ export class EditarArcoComponent implements OnInit {
     const libraje = Number((document.getElementById('libraje') as HTMLSelectElement).value);
     const mano = (document.getElementById('mano') as HTMLSelectElement).value;
     const calidad = (document.getElementById('calidad') as HTMLSelectElement).value;
-    const estado = (document.getElementById('estado') as HTMLSelectElement).value;
 
     const cuerda = (document.getElementById('cuerda') as HTMLSelectElement).value;
     const rest = (document.getElementById('rest') as HTMLSelectElement).value;
@@ -168,7 +162,7 @@ export class EditarArcoComponent implements OnInit {
     const pintura = (document.getElementById('pintura') as HTMLSelectElement).value;
 
     //meter a model
-    let newArco = new Arco(numero,calidad,estado,libraje,tipoArco,mano,cuerda,rest,palas,pintura,this.mantenimiento,this.historial)
+    let newArco = new Arco(numero,calidad,libraje,tipoArco,mano,cuerda,rest,palas,pintura,this.mantenimiento,this.historial)
 
     const jsonString = JSON.stringify(newArco);
 
@@ -222,12 +216,6 @@ export class EditarArcoComponent implements OnInit {
       inputCalidad.value = this.arco.calidad.toString();
     } else {
       inputCalidad.value = "Vacio"
-    }
-
-    if (this.arco.estado !== undefined) {
-      inputEstado.value = this.arco.estado.toString();
-    } else {
-      inputEstado.value = "Vacio"
     }
 
     if (this.arco.estadoCuerda !== undefined) {
